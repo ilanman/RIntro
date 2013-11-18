@@ -111,8 +111,8 @@ Vectors
 - Vectors obviate need for loops (most of the time!)
 
 ```{r,eval=TRUE,echo=TRUE}
-x <- seq(from=1,to=10,by=1)
-for (i in c(1:length(x)))  y[i] <- x[i] * 5 
+x <- seq(from=1,to=10,by=1); y<-0;
+for (i in c(1:length(x)))  y[i] <- x[i] * 5
 y
 ## alternatively....
 y <- x * 5
