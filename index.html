@@ -62,7 +62,9 @@
     <h2>R Intro</h2>
   </hgroup>
   <article>
-    <p>Background </p>
+    <h1>Background</h1>
+
+<p><space></p>
 
 <ul>
 <li>Derivative of S language, developed at Bell Laboratories by John Chambers</li>
@@ -87,7 +89,9 @@
     <h2>R Intro</h2>
   </hgroup>
   <article>
-    <p>Background</p>
+    <h1>Background</h1>
+
+<p><space></p>
 
 <ul>
 <li>Installing packages</li>
@@ -109,7 +113,9 @@ library()                      ## shows you every package in your standard packa
     <h2>R Intro</h2>
   </hgroup>
   <article>
-    <p>Styling</p>
+    <h1>Styling</h1>
+
+<p><space></p>
 
 <ul>
 <li><a href="http://cran.r-project.org/web/packages/rockchalk/vignettes/Rstyle.pdf">CRAN</a> and <a href="http://google-styleguide.googlecode.com/svn/trunk/Rguide.xml">Google</a> style guide</li>
@@ -149,7 +155,9 @@ library()                      ## shows you every package in your standard packa
     <h2>Data structures</h2>
   </hgroup>
   <article>
-    <p>Vectors</p>
+    <h1>Vectors</h1>
+
+<p><space></p>
 
 <ul>
 <li>Fundamental R data type: Everything is a vector in R (including scalars)</li>
@@ -185,7 +193,9 @@ for (i in 1:n) x &lt;- c(x,i)  ## preferred vs. above
     <h2>Data structures</h2>
   </hgroup>
   <article>
-    <p>Vectors</p>
+    <h1>Vectors</h1>
+
+<p><space></p>
 
 <ul>
 <li>Vectors obviate need for loops (most of the time!)</li>
@@ -217,7 +227,9 @@ print(y)
     <h2>Data structures</h2>
   </hgroup>
   <article>
-    <p>Vector Indexing</p>
+    <h1>Vector Indexing</h1>
+
+<p><space></p>
 
 <ul>
 <li>Important, but only if you like using vectors. And R.</li>
@@ -250,7 +262,9 @@ all(x &lt; 8)
     <h2>Data structures</h2>
   </hgroup>
   <article>
-    <p>Vectorized Operations</p>
+    <h1>Vectorized Operations</h1>
+
+<p><space></p>
 
 <ul>
 <li>Easiest way to acheive speed in R - apply a function to a vector</li>
@@ -283,7 +297,9 @@ ifelse(x &lt; 5, x^2, 0) ## if (condition) { do something } else { do something 
     <h2>Data structures</h2>
   </hgroup>
   <article>
-    <p>Vectorized Operations continued</p>
+    <h1>Vectorized Operations continued</h1>
+
+<p><space></p>
 
 <ul>
 <li>When coming from a different language, probably best NOT to translate code verbatim</li>
@@ -314,7 +330,9 @@ logsum &lt;- sum(log(x))       ## this calculation takes about 0.002 seconds. 98
     <h2>Data structures</h2>
   </hgroup>
   <article>
-    <p>Vectors</p>
+    <h1>Vectors</h1>
+
+<p><space></p>
 
 <ul>
 <li>Be careful when thinking you are vectorizing</li>
@@ -347,7 +365,9 @@ max(1,3,2)
     <h2>Data structures</h2>
   </hgroup>
   <article>
-    <p>Vectors: <code>NA</code> and <code>NULL</code></p>
+    <h1>Vectors: <code>NA</code> and <code>NULL</code></h1>
+
+<p><space></p>
 
 <ul>
 <li><code>NA</code> appears often in messy data, especially when a value doesn&#39;t exist</li>
@@ -380,7 +400,9 @@ length(NULL)            ## NULL does not take any value. By definition, it&#39;s
     <h2>Data structures</h2>
   </hgroup>
   <article>
-    <p>Vector Filtering</p>
+    <h1>Vector Filtering</h1>
+
+<p><space></p>
 
 <ul>
 <li>Extremely useful for quick data analysis. Similar to indexing.</li>
@@ -412,9 +434,10 @@ x[ x &gt; 5 ]          ## What&#39;s happening here?
     <h2>Data structures</h2>
   </hgroup>
   <article>
-    <p>Vector Filtering</p>
+    <h1>Vector Filtering</h1>
 
-<p>Common filtering functions include:</p>
+<p><space>
+Common filtering functions include:</p>
 
 <pre><code class="r">subset(x, x &gt; 5)      ## [1]  6  7  8  9 10
 which(x &gt; 5)          ## [1]  6  7  8  9 10
@@ -430,7 +453,9 @@ which(x &gt; 5)          ## [1]  6  7  8  9 10
     <h2>Data structures</h2>
   </hgroup>
   <article>
-    <p>Vectors: Summary</p>
+    <h1>Vectors: Summary</h1>
+
+<p><space></p>
 
 <ul>
 <li>Everything in R is a vector</li>
@@ -451,7 +476,9 @@ which(x &gt; 5)          ## [1]  6  7  8  9 10
     <h2>Data structures</h2>
   </hgroup>
   <article>
-    <p>Matrices</p>
+    <h1>Matrices</h1>
+
+<p><space></p>
 
 <ul>
 <li>Like vectors with two additional attributes: rows and columns</li>
@@ -483,7 +510,9 @@ x &lt;- matrix( seq(1,6,by=1), nrow=3, ncol=3)        ## is this ok?
     <h2>Data structures</h2>
   </hgroup>
   <article>
-    <p>Matrix operations</p>
+    <h1>Matrix operations</h1>
+
+<p><space></p>
 
 <pre><code class="r">x &lt;- matrix(seq(1,9),nrow=3,ncol=3)
 x + 5
@@ -510,7 +539,9 @@ eigen(x)                    ## list of eigenvalues and eigenvectors
     <h2>Data structures</h2>
   </hgroup>
   <article>
-    <p>Matrix indexing and filtering</p>
+    <h1>Matrix indexing and filtering</h1>
+
+<p><space></p>
 
 <pre><code class="r">x[2,1]            ## second row, first column
 
@@ -530,7 +561,9 @@ x[-1,]            ## remove first row. Negative indexing.
     <h2>Data structures</h2>
   </hgroup>
   <article>
-    <p>Matrix class</p>
+    <h1>Matrix class</h1>
+
+<p><space></p>
 
 <pre><code class="r">x &lt;- matrix( c(1:9), nrow=3, ncol=3)
 class(x)                      ## matrix
@@ -560,7 +593,9 @@ rownames(x) &lt;- c( &#39;row 1&#39; , &#39;row 2&#39; , &#39;row 3&#39; )
     <h2>Data structures</h2>
   </hgroup>
   <article>
-    <p>Exercise!</p>
+    <h1>Exercise!</h1>
+
+<p><space></p>
 
 <pre><code class="r">a) 
 x &lt;- matrix(rep(c(1,3,-1,2),5),ncol=4)
@@ -583,7 +618,9 @@ y &lt;- matrix(c(c(1,2,4,8),c(2,3,-1,-7),c(0,5,12,-4),c(3,4,5,0)),ncol=4)
     <h2>Data structures</h2>
   </hgroup>
   <article>
-    <p>Lists</p>
+    <h1>Lists</h1>
+
+<p><space></p>
 
 <ul>
 <li>Combine objects of different types. Can have different <code>modes</code>.</li>
@@ -616,7 +653,9 @@ print(x)
     <h2>Data structures</h2>
   </hgroup>
   <article>
-    <p>Lists</p>
+    <h1>Lists</h1>
+
+<p><space></p>
 
 <ul>
 <li>Accessing <code>list</code> components</li>
@@ -647,7 +686,9 @@ x[[&#39;title&#39;]]
     <h2>Data structures</h2>
   </hgroup>
   <article>
-    <p>Lists</p>
+    <h1>Lists</h1>
+
+<p><space></p>
 
 <ul>
 <li>Accessing <code>list</code> components and values</li>
@@ -672,7 +713,9 @@ z &lt;- list(x,y)       ## list of lists
 
 <h2>Data structures</h2>
 
-<p>Lists</p>
+<h1>Lists</h1>
+
+<p><space></p>
 
 <ul>
 <li>The result of most statistical operations in R return a <code>list</code></li>
@@ -702,7 +745,9 @@ r$residuals
     <h2>Data structures</h2>
   </hgroup>
   <article>
-    <p>Data Frames</p>
+    <h1>Data Frames</h1>
+
+<p><space></p>
 
 <ul>
 <li>The most useful object in R for data analysis</li>
@@ -731,7 +776,9 @@ print(y)
     <h2>Data structures</h2>
   </hgroup>
   <article>
-    <p>Data.frames</p>
+    <h1>Data.frames</h1>
+
+<p><space></p>
 
 <pre><code class="r">x &lt;- data.frame(matrix( sample(c(50:100), size=12, replace=TRUE), nrow=6, ncol=2))
 
@@ -751,7 +798,9 @@ x[&#39;X1&#39;]               ## type data.frame
     <h2>Data structures</h2>
   </hgroup>
   <article>
-    <p>Data.frames</p>
+    <h1>Data.frames</h1>
+
+<p><space></p>
 
 <ul>
 <li>Helpful <code>data.frame</code> functions</li>
@@ -780,7 +829,9 @@ z &lt;- rbind(z, w)               ## row bind
     <h2>Data structures</h2>
   </hgroup>
   <article>
-    <p>Data.frames</p>
+    <h1>Data.frames</h1>
+
+<p><space></p>
 
 <pre><code class="r">## explicitly set columns names for z. Use rownames() for row names. Shocker.
 names(z) &lt;- c(&quot;names&quot;, &quot;Exam 1&quot;,&quot;Exam 2&quot;)
@@ -808,7 +859,9 @@ tail(z)           ## default to last 6 rows
     <h2>Data structures</h2>
   </hgroup>
   <article>
-    <p>Factors</p>
+    <h1>Factors</h1>
+
+<p><space></p>
 
 <ul>
 <li>Comes from the notion of categorical variables in statistics</li>
@@ -841,7 +894,9 @@ print(y)
     <h2>Data structures</h2>
   </hgroup>
   <article>
-    <p>Factors</p>
+    <h1>Factors</h1>
+
+<p><space></p>
 
 <ul>
 <li>use <code>levels</code> to order your levels. Helpful when sorting factors</li>
@@ -873,7 +928,9 @@ sort(wdayf)
     <h2>Data structures</h2>
   </hgroup>
   <article>
-    <p>Factors</p>
+    <h1>Factors</h1>
+
+<p><space></p>
 
 <ul>
 <li>Common <code>factor</code> functions</li>
@@ -900,7 +957,9 @@ addmargins(tbl)  ## marginal sums
     <h2>Data structures</h2>
   </hgroup>
   <article>
-    <p>Factors</p>
+    <h1>Factors</h1>
+
+<p><space></p>
 
 <ul>
 <li>Converting between factors and other types</li>
@@ -931,7 +990,9 @@ as.numeric(levels(f))            ## more efficient due to less conversions
     <h2>Data structures</h2>
   </hgroup>
   <article>
-    <p>Summary</p>
+    <h1>Summary</h1>
+
+<p><space></p>
 
 <ul>
 <li><code>Vectors</code> - lifeblood of R</li>
@@ -967,7 +1028,9 @@ as.numeric(levels(f))            ## more efficient due to less conversions
     <h2>Control Structures</h2>
   </hgroup>
   <article>
-    <p><code>for()</code></p>
+    <h1><code>for()</code></h1>
+
+<p><space></p>
 
 <pre><code class="r">x &lt;- seq(0, 20, by=1)           ## default increment is 1 
 
@@ -979,7 +1042,7 @@ for (i in c(1:length(x))){
 for (i in c(1:length(x))) x[i] &lt;- x[i] * 2
 </code></pre>
 
-<p><code>while()</code></p>
+<h1><code>while()</code></h1>
 
 <pre><code class="r">i=1
 while (i &lt;= 21) {
@@ -997,7 +1060,9 @@ while (i &lt;= 21) {
     <h2>Control Structures</h2>
   </hgroup>
   <article>
-    <p><code>repeat()</code></p>
+    <h1><code>repeat()</code></h1>
+
+<p><space></p>
 
 <pre><code class="r">x &lt;- seq(0,20,by=1) 
 
@@ -1009,7 +1074,7 @@ repeat {
 }
 </code></pre>
 
-<p><code>try()</code></p>
+<h1><code>try()</code></h1>
 
 <pre><code class="r">try(&quot;hello&quot; + 1, silent = FALSE)
 try(&quot;hello&quot; + 1, silent = TRUE)
@@ -1028,7 +1093,9 @@ tryCatch(&quot;hello&quot; + 1, error = function(e) print(&quot;don&#39;t be rid
     <h2>Control Structures</h2>
   </hgroup>
   <article>
-    <p><code>if()</code></p>
+    <h1><code>if()</code></h1>
+
+<p><space></p>
 
 <pre><code class="r">if (a == b) {
   # do something
@@ -1057,7 +1124,9 @@ ifelse (a == b, x, y)     ## use ifelse() on vectors
     <h2>Control Structures</h2>
   </hgroup>
   <article>
-    <p>Exercise!</p>
+    <h1>Exercise!</h1>
+
+<p><space></p>
 
 <pre><code class="r">(a) Write a loop to scan through an integer vector and return the index of the 
 largest value. The loop should terminate as soon as the index is found. Ignore ties.
@@ -1091,7 +1160,9 @@ largest value. The loop should terminate as soon as the index is found. Ignore t
     <h2>Functions</h2>
   </hgroup>
   <article>
-    <p>Functions</p>
+    <h1>Functions</h1>
+
+<p><space></p>
 
 <ul>
 <li>Write functions - it&#39;s good practice</li>
@@ -1122,7 +1193,9 @@ exponentiate(2, 4)
     <h2>Functions</h2>
   </hgroup>
   <article>
-    <p>Arguments</p>
+    <h1>Arguments</h1>
+
+<p><space></p>
 
 <pre><code class="r">formals(exponentiate)        # $x   $y   These are the arguments to exponentiate()
 body(exponentiate)           # { return (x^y) }
@@ -1134,7 +1207,7 @@ body(exponentiate)           # { return (x^y) }
 <pre><code>## function(x, y) {
 ##     return(x^y)
 ## }
-## &lt;environment: 0x7f852f280468&gt;
+## &lt;environment: 0x7f852c715a70&gt;
 </code></pre>
 
 <ul>
@@ -1151,7 +1224,9 @@ body(exponentiate)           # { return (x^y) }
     <h2>Functions</h2>
   </hgroup>
   <article>
-    <p>Arguments</p>
+    <h1>Arguments</h1>
+
+<p><space></p>
 
 <ul>
 <li>Arguments can have default values.</li>
@@ -1190,7 +1265,9 @@ f &lt;- function(x, ...) {
     <h2>Functions</h2>
   </hgroup>
   <article>
-    <p>Environment and Scope</p>
+    <h1>Environment and Scope</h1>
+
+<p><space></p>
 
 <ul>
 <li>A function consists of its arguments, body and environment</li>
@@ -1220,9 +1297,10 @@ f(2)
     <h2>Functions</h2>
   </hgroup>
   <article>
-    <p>Exercise!</p>
+    <h1>Exercise!</h1>
 
-<p>Write a function that finds the maximum value in corresponding indices for two vectors.</p>
+<p><space>
+Write a function that finds the maximum value in corresponding indices for two vectors.</p>
 
 <pre><code class="r">e.g. 
 x &lt;- c(1,2,3,4)
@@ -1845,7 +1923,9 @@ df
     <h2>Miscellaneous Tips and tricks</h2>
   </hgroup>
   <article>
-    <p>Exercise!</p>
+    <h1>Exercise!</h1>
+
+<p><space></p>
 
 <pre><code class="r">a)
 ## Create a new column called num2 for which each value is double the corresponding value in num
@@ -1854,7 +1934,7 @@ x &lt;- data.frame(num=factor(c(1.0,0.03,8.0, 0.4)))
 
 b)
 ## Find the letters in z corresponding to the indices of even numbers in y
-y &lt;- c(1,2,NA,4,5,8,5,2)
+y &lt;- c(1,2,NA,4,5,8,5,2,3)
 z &lt;- c(&quot;f&quot;,&quot;g&quot;,&quot;e&quot;,&quot;i&quot;,&quot;l&quot;,&quot;o&quot;,&quot;p&quot;,&quot;u&quot;)
 </code></pre>
 
@@ -1870,7 +1950,7 @@ z &lt;- c(&quot;f&quot;,&quot;g&quot;,&quot;e&quot;,&quot;i&quot;,&quot;l&quot;,
     <ol>
 <li>Object oriented programming with S3 and S4 </li>
 <li>Input/output</li>
-<li>Packages: <code>ggplot</code>, <code>reshape</code>, <code>plyr</code>, <code>forecast</code>, <code>MASS</code></li>
+<li>Packages: <a href="http://cran.r-project.org/web/packages/ggplot2/index.html"><code>ggplot</code></a>, <a href="http://cran.r-project.org/web/packages/reshape/index.html"><code>reshape</code></a>, <a href="http://cran.r-project.org/web/packages/plyr/index.html"><code>plyr</code></a>, <a href="http://cran.r-project.org/web/packages/forecast/index.html"><code>forecast</code></a>, <a href="http://cran.r-project.org/web/packages/MASS/index.html"><code>MASS</code></a></li>
 <li>Debugging: <code>browser()</code>, <code>warnings()</code></li>
 <li>Parallelizing</li>
 <li>Much more</li>
@@ -1886,26 +1966,20 @@ z &lt;- c(&quot;f&quot;,&quot;g&quot;,&quot;e&quot;,&quot;i&quot;,&quot;l&quot;,
   </hgroup>
   <article>
     <ol>
-<li>The Art of R Programming</li>
-<li>R cookbook</li>
-<li>Computing for Data Analysis (Coursera)</li>
+<li><a href="http://shop.oreilly.com/product/9780596809164.do">The Art of R Programming</a></li>
+<li><a href="http://nostarch.com/artofr.htm">R cookbook</a></li>
+<li><a href="https://www.coursera.org/course/compdata">Computing for Data Analysis</a> (Coursera)</li>
 </ol>
+
+<hr>
+
+<h2>Questions?</h2>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
       <slide class="" id="slide-68" style="background:;">
-  <hgroup>
-    <h2>Questions?</h2>
-  </hgroup>
-  <article>
-    
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-      <slide class="" id="slide-69" style="background:;">
   <hgroup>
     
   </hgroup>

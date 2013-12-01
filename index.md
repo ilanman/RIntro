@@ -22,8 +22,8 @@ mode        : selfcontained # {standalone, draft}
 ----
 
 ## R Intro
-Background 
-
+# Background 
+<space>
 - Derivative of S language, developed at Bell Laboratories by John Chambers
 - R was created by two statisticians at the University of Auckland, New Zealand
 - R is written in C, Fortran and R
@@ -39,8 +39,8 @@ Background
 ----
 
 ## R Intro
-Background
-
+# Background
+<space>
 - Installing packages
 
 ```r
@@ -54,8 +54,8 @@ library()                      ## shows you every package in your standard packa
 ----
 
 ## R Intro
-Styling
-
+# Styling
+<space>
 - [CRAN][1] and [Google][2] style guide
 - [R Coding convention][3] is another resource
 
@@ -85,8 +85,8 @@ Styling
 ----
 
 ## Data structures
-Vectors
-
+# Vectors
+<space>
 - Fundamental R data type: Everything is a vector in R (including scalars)
 - Vector elements must be of the same type, or `mode` in R. Known as atomic.
 - Common ways to initialize a vector
@@ -111,8 +111,8 @@ for (i in 1:n) x <- c(x,i)  ## preferred vs. above
 ----
 
 ## Data structures
-Vectors
-
+# Vectors
+<space>
 - Vectors obviate need for loops (most of the time!)
 
 
@@ -141,8 +141,8 @@ print(y)
 ----
 
 ## Data structures
-Vector Indexing
-
+# Vector Indexing
+<space>
 - Important, but only if you like using vectors. And R.
 - Indexing begins at 1, not 0.
 - Can index a vector by name, if elements are named.
@@ -167,8 +167,8 @@ all(x < 8)
 ----
 
 ## Data structures
-Vectorized Operations
-
+# Vectorized Operations
+<space>
 - Easiest way to acheive speed in R - apply a function to a vector
 
 
@@ -195,8 +195,8 @@ ifelse(x < 5, x^2, 0) ## if (condition) { do something } else { do something els
 ----
 
 ## Data structures
-Vectorized Operations continued
-
+# Vectorized Operations continued
+<space>
 - When coming from a different language, probably best NOT to translate code verbatim
 - Loops are your friend in C. In R, loops are like a freeloading friend - unrealiable at best.
 - Under the hood, a vectorized operation is running a loop - in C. Much faster than in R.
@@ -219,8 +219,8 @@ logsum <- sum(log(x))       ## this calculation takes about 0.002 seconds. 98% f
 ----
 
 ## Data structures
-Vectors
-
+# Vectors
+<space>
 - Be careful when thinking you are vectorizing
 - Many R functions take a function as an argument
 - `sum`, `max`, `min`, ... are exceptions
@@ -243,8 +243,8 @@ max(1,3,2)
 ----
 
 ## Data structures
-Vectors: `NA` and `NULL`
-
+# Vectors: `NA` and `NULL`
+<space>
 - `NA` appears often in messy data, especially when a value doesn't exist
 - R will attempt to calculate `NA`, and therefore return `NA`
 - If R sees `NULL`, it skips it. `NULL` is non existant. Yet it exists as a `NULL`. ?philosophy.
@@ -269,8 +269,8 @@ length(NULL)            ## NULL does not take any value. By definition, it's und
 ----
 
 ## Data structures
-Vector Filtering
-
+# Vector Filtering
+<space>
 - Extremely useful for quick data analysis. Similar to indexing.
 
 ```r
@@ -293,9 +293,8 @@ x[c(FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE)]
 ----
 
 ## Data structures
-Vector Filtering
-
-
+# Vector Filtering
+<space>
 Common filtering functions include:
 ```r
 subset(x, x > 5)      ## [1]  6  7  8  9 10
@@ -306,8 +305,8 @@ which(x > 5)          ## [1]  6  7  8  9 10
 ----
 
 ## Data structures
-Vectors: Summary
-
+# Vectors: Summary
+<space>
 - Everything in R is a vector
 - All elements are of one type, atomic vectors.
 - Vectorize whenever possible
@@ -319,8 +318,8 @@ Vectors: Summary
 ----
 
 ## Data structures
-Matrices
-
+# Matrices
+<space>
 - Like vectors with two additional attributes: rows and columns
 - Column-major order: insert values in first column, going down, then continuing to second column, going down, as so on
 
@@ -347,8 +346,8 @@ x <- matrix( seq(1,6,by=1), nrow=3, ncol=3)        ## is this ok?
 ----
 
 ## Data structures
-Matrix operations
-
+# Matrix operations
+<space>
 ```r
 x <- matrix(seq(1,9),nrow=3,ncol=3)
 x + 5
@@ -367,8 +366,8 @@ eigen(x)                    ## list of eigenvalues and eigenvectors
 ----
 
 ## Data structures
-Matrix indexing and filtering
-
+# Matrix indexing and filtering
+<space>
 ```r
 x[2,1]            ## second row, first column
 
@@ -382,8 +381,8 @@ x[-1,]            ## remove first row. Negative indexing.
 ----
 
 ## Data structures
-Matrix class
-
+# Matrix class
+<space>
 ```r
 x <- matrix( c(1:9), nrow=3, ncol=3)
 class(x)                      ## matrix
@@ -404,8 +403,8 @@ rownames(x) <- c( 'row 1' , 'row 2' , 'row 3' )
 ----
 
 ## Data structures
-Exercise!
-
+# Exercise!
+<space>
 ```r
 a) 
 x <- matrix(rep(c(1,3,-1,2),5),ncol=4)
@@ -422,8 +421,8 @@ y <- matrix(c(c(1,2,4,8),c(2,3,-1,-7),c(0,5,12,-4),c(3,4,5,0)),ncol=4)
 ----
 
 ## Data structures
-Lists
-
+# Lists
+<space>
 - Combine objects of different types. Can have different `modes`.
 - Forms basis for `data.frames`
 - Vectors, matrices cannot be broken down into smaller components, hence atomic.
@@ -451,8 +450,8 @@ print(x)
 ----
 
 ## Data structures
-Lists
-
+# Lists
+<space>
 - Accessing `list` components
 
 
@@ -479,8 +478,8 @@ x[['title']]
 ----
 
 ## Data structures
-Lists
-
+# Lists
+<space>
 - Accessing `list` components and values
 
 ```r
@@ -501,8 +500,8 @@ z <- list(x,y)       ## list of lists
 ----
 
 ## Data structures
-Lists
-
+# Lists
+<space>
 - The result of most statistical operations in R return a `list`
 - Knowing how to manipulate lists is important
 
@@ -524,8 +523,8 @@ r$residuals
 ----
 
 ## Data structures
-Data Frames
-
+# Data Frames
+<space>
 - The most useful object in R for data analysis
 - Like a matrix of lists, of equal length
 - Many R functions and packages assume input is in the form of a `data.frame`
@@ -550,8 +549,8 @@ print(y)
 ----
 
 ## Data structures
-Data.frames
-
+# Data.frames
+<space>
 ```r
 x <- data.frame(matrix( sample(c(50:100), size=12, replace=TRUE), nrow=6, ncol=2))
 
@@ -565,8 +564,8 @@ x['X1']               ## type data.frame
 ----
 
 ## Data structures
-Data.frames
-
+# Data.frames
+<space>
 - Helpful `data.frame` functions
 
 ```r
@@ -587,8 +586,8 @@ z <- rbind(z, w)               ## row bind
 ----
 
 ## Data structures
-Data.frames
-
+# Data.frames
+<space>
 ```r
 ## explicitly set columns names for z. Use rownames() for row names. Shocker.
 names(z) <- c("names", "Exam 1","Exam 2")
@@ -607,8 +606,8 @@ tail(z)           ## default to last 6 rows
 ----
 
 ## Data structures
-Factors
-
+# Factors
+<space>
 - Comes from the notion of categorical variables in statistics
 - Can be thought of as a `vector` with additional information - categories, or `levels`
 - Used to split up data sets; commonly seen as columns of `data.frame`s
@@ -638,8 +637,8 @@ print(y)
 ---
 
 ## Data structures
-Factors
-
+# Factors
+<space>
 - use `levels` to order your levels. Helpful when sorting factors
 
 
@@ -668,8 +667,8 @@ sort(wdayf)
 ----
 
 ## Data structures
-Factors
-
+# Factors
+<space>
 - Common `factor` functions
 
 ```r
@@ -691,8 +690,8 @@ addmargins(tbl)  ## marginal sums
 ----
 
 ## Data structures
-Factors
-
+# Factors
+<space>
 - Converting between factors and other types
 
 ```r
@@ -715,8 +714,8 @@ as.numeric(levels(f))            ## more efficient due to less conversions
 ----
 
 ## Data structures
-Summary
-
+# Summary
+<space>
 - `Vectors` - lifeblood of R
 - `Matrices` - great for linear algebra and stats functions
 - `Lists` - store and access elements of complex objects
@@ -736,8 +735,8 @@ Summary
 ----
 
 ## Control Structures
-`for()`
-
+# `for()`
+<space>
 ```r
 x <- seq(0, 20, by=1)           ## default increment is 1 
 
@@ -748,7 +747,7 @@ for (i in c(1:length(x))){
 ## can be written on one line - but careful to not make it too messy
 for (i in c(1:length(x))) x[i] <- x[i] * 2
 ```
-`while()`
+# `while()`
 ```r
 i=1
 while (i <= 21) {
@@ -760,8 +759,8 @@ while (i <= 21) {
 ----
 
 ## Control Structures
-`repeat()`
-
+# `repeat()`
+<space>
 ```r
 x <- seq(0,20,by=1) 
 
@@ -772,7 +771,7 @@ repeat {
   if (i > 21) break
 }
 ```
-`try()`
+# `try()`
 
 ```r
 try("hello" + 1, silent = FALSE)
@@ -788,8 +787,8 @@ tryCatch("hello" + 1, error = function(e) print("don't be ridiculous"))
 ----
 
 ## Control Structures
-`if()`
-
+# `if()`
+<space>
 ```r
 if (a == b) {
   # do something
@@ -812,8 +811,8 @@ ifelse (a == b, x, y)     ## use ifelse() on vectors
 ----
 
 ## Control Structures
-Exercise!
-
+# Exercise!
+<space>
 ```r
 (a) Write a loop to scan through an integer vector and return the index of the 
 largest value. The loop should terminate as soon as the index is found. Ignore ties.
@@ -834,8 +833,8 @@ largest value. The loop should terminate as soon as the index is found. Ignore t
 ----
 
 ## Functions
-Functions
-
+# Functions
+<space>
 - Write functions - it's good practice
 - Each function should perform a specified task - easily understood inputs and outputs
 - `function()` is a built-in R function whose job is to create functions...#mindblown
@@ -859,8 +858,8 @@ exponentiate(2, 4)
 ----
 
 ## Functions
-Arguments
-
+# Arguments
+<space>
 ```r
 formals(exponentiate)        # $x   $y   These are the arguments to exponentiate()
 body(exponentiate)           # { return (x^y) }
@@ -874,7 +873,7 @@ exponentiate  # prints out the entire function - good if you forget what's in it
 ## function(x, y) {
 ##     return(x^y)
 ## }
-## <environment: 0x7f852f280468>
+## <environment: 0x7f852c715a70>
 ```
 
 - Try it out on any built-in R function to see its innards
@@ -883,8 +882,8 @@ exponentiate  # prints out the entire function - good if you forget what's in it
 ----
 
 ## Functions
-Arguments
-
+# Arguments
+<space>
 - Arguments can have default values.
 
 ```r
@@ -916,8 +915,8 @@ sapply(x, function(x) x * 2)
 ----
 
 ## Functions
-Environment and Scope
-
+# Environment and Scope
+<space>
 - A function consists of its arguments, body and environment
 
 ```r
@@ -939,8 +938,8 @@ f(2)
 ----
 
 ## Functions
-Exercise!
-
+# Exercise!
+<space>
 Write a function that finds the maximum value in corresponding indices for two vectors.
 ```r
 e.g. 
@@ -1399,8 +1398,8 @@ df
 ----
 
 ## Miscellaneous Tips and tricks
-Exercise!
-
+# Exercise!
+<space>
 ```r
 a)
 ## Create a new column called num2 for which each value is double the corresponding value in num
@@ -1409,7 +1408,7 @@ x <- data.frame(num=factor(c(1.0,0.03,8.0, 0.4)))
 
 b)
 ## Find the letters in z corresponding to the indices of even numbers in y
-y <- c(1,2,NA,4,5,8,5,2)
+y <- c(1,2,NA,4,5,8,5,2,3)
 z <- c("f","g","e","i","l","o","p","u")
 ```
 
@@ -1419,19 +1418,26 @@ z <- c("f","g","e","i","l","o","p","u")
 
 1. Object oriented programming with S3 and S4 
 2. Input/output
-3. Packages: `ggplot`, `reshape`, `plyr`, `forecast`, `MASS`
+3. Packages: [`ggplot`][1], [`reshape`][2], [`plyr`][3], [`forecast`][4], [`MASS`][5]
 4. Debugging: `browser()`, `warnings()`
 5. Parallelizing
 6. Much more
+[1]: http://cran.r-project.org/web/packages/ggplot2/index.html
+[2]: http://cran.r-project.org/web/packages/reshape/index.html
+[3]: http://cran.r-project.org/web/packages/plyr/index.html
+[4]: http://cran.r-project.org/web/packages/forecast/index.html
+[5]: http://cran.r-project.org/web/packages/MASS/index.html
 
 ----
 
 ## Resources
 
-1. The Art of R Programming
-2. R cookbook
-3. Computing for Data Analysis (Coursera)
-
+1. [The Art of R Programming][1]
+2. [R cookbook][2]
+3. [Computing for Data Analysis][3] (Coursera)
+[1]: http://shop.oreilly.com/product/9780596809164.do
+[2]: http://nostarch.com/artofr.htm
+[3]: https://www.coursera.org/course/compdata
 ----
 
 ## Questions?
