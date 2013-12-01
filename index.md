@@ -873,7 +873,7 @@ exponentiate  # prints out the entire function - good if you forget what's in it
 ## function(x, y) {
 ##     return(x^y)
 ## }
-## <environment: 0x7f852c715a70>
+## <environment: 0x7f852e0d8db8>
 ```
 
 - Try it out on any built-in R function to see its innards
@@ -939,7 +939,7 @@ f(2)
 
 ## Functions
 # Exercise!
-<space>
+<br>
 Write a function that finds the maximum value in corresponding indices for two vectors.
 ```r
 e.g. 

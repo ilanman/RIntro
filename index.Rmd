@@ -805,7 +805,7 @@ f(2)
 
 ## Functions
 # Exercise!
-<space>
+<br>
 Write a function that finds the maximum value in corresponding indices for two vectors.
 ```r
 e.g. 
