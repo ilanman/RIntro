@@ -12,43 +12,40 @@ mode        : selfcontained # {standalone, draft}
 
 ## Agenda 
 
-1. Intro
+1. R intro
 2. Data structures
-3. Control Structures
+3. Control structures
 4. Functions
 5. Commonly used built in functions
-6. String Manipulation
+6. String manipulation
 
 ----
 
-## Intro
-
-- Background
-- Styling
-
-----
-
-## Intro
+## R Intro
 Background 
 
-- Derivative of S language. Developed at Bell Laboratories
+- Derivative of S language, developed at Bell Laboratories by John Chambers
+- R was created by two statisticians at the University of Auckland, New Zealand
+- R is written in C, Fortran and R
 - Open source (Revolution Analytics offers commerical software)
-- Originally command line, but RStudio becoming more popular
+- Originally command line, but graphical interfaces (including RStudio and Rattle) becoming new norm
 - Very popular, especially among academics and statisticians
 - Intepreted language - easier to write code, but slower computations
-- Packages available to speed up R code - `xts`, `Rcpp`, `Rprof`
-- R holds all data in RAM. Problematic for large data sets.
+- Packages available to speed up R code - `xts`, `Rcpp`, `ff`, `snow`, `parallel`
+- R holds all data in RAM. Problematic for large data sets
 - R is excellent for prototyping
+- `?help` -> use this to get help. `?` is easily the most useful function in R.
 
 ----
 
-## Intro
+## R Intro
 Background
 
 - Installing packages
 
 ```r
 install.packages('ggplot2')    ## do this once only
+
 require('ggplot2')             ## do this every time you load up an R session
 
 library()                      ## shows you every package in your standard package location
@@ -56,18 +53,23 @@ library()                      ## shows you every package in your standard packa
 
 ----
 
-## Intro
+## R Intro
 Styling
 
-- CRAN and Google style guide
+- [CRAN][1] and [Google][2] style guide
+- [R Coding convention][3] is another resource
+
 - Use `<-` NOT `=` for assignment
 - Spaces between operators like `+`, `%*%`, `<`, `>` and after closing brackets `)`, `}`
 - Don't write functions named `rep()`, `sample()`, `plot()` or any other built-in R names
+- `c` should not be used for any variable names
+- `i` and `j` should only be used in loops, conditionals, etc...
 - Use camel case for functions: `myFirstFunction()` is better than `my.first.function()`
-- Styling resources:
-  <ul>[CRAN](http://cran.r-project.org/web/packages/rockchalk/vignettes/Rstyle.pdf)</ul>
-  <ul>[Google](http://google-styleguide.googlecode.com/svn/trunk/Rguide.xml)</ul>
-  <ul>[R Coding convention](https://docs.google.com/document/d/1esDVxyWvH8AsX-VJa-8oqWaHLs4stGlIbk8kLc5VlII/edit)</ul>
+- Use `'hello'` or `"hello"` for strings, but be consistent.
+
+[1]: http://cran.r-project.org/web/packages/rockchalk/vignettes/Rstyle.pdf
+[2]: http://google-styleguide.googlecode.com/svn/trunk/Rguide.xml
+[3]: https://docs.google.com/document/d/1esDVxyWvH8AsX-VJa-8oqWaHLs4stGlIbk8kLc5VlII/edit
 
 
 ----
@@ -86,7 +88,7 @@ Styling
 Vectors
 
 - Fundamental R data type: Everything is a vector in R (including scalars)
-- Vector elements must be of the same type, or `mode` in R
+- Vector elements must be of the same type, or `mode` in R. Known as atomic.
 - Common ways to initialize a vector
 
 ```r
@@ -96,12 +98,15 @@ x <- seq(from=1,to=10,by=1)  ## alternative - class numeric
 
 n <- 10
 x <- numeric(n)
-for (i in 1:n) x[i] <- i    ## as n gets large, this is very slow (compared to the 
-                            ## alternatives)
+for (i in 1:n) x[i] <- i    ## as n gets large, this is very slow (compared to the alternatives)
+
 x <- numeric(0)             
-for (i in 1:n) x <- c(x,i)  ## to the extent possible, provide the size of your object when
+for (i in 1:n) x <- c(x,i)  ## preferred vs. above
+                            ## to the extent possible, provide the size of your object when
                             ## initializing it
 ```
+- Six atomic vector types:
+<ul> `logical`, `character`, `integer`, `double`, `complex`, `raw`</ul>
 
 ----
 
@@ -110,32 +115,33 @@ Vectors
 
 - Vectors obviate need for loops (most of the time!)
 
-```{r,eval=TRUE,echo=TRUE}
-x <- seq(from=1,to=10,by=1); y<-0;
-for (i in c(1:length(x)))  y[i] <- x[i] * 5
-y
+```{r,eval=TRUE,echo=TRUE,message=FALSE}
+x <- seq( from=1 , to=10 , by=1 ); y <- 0;
+for (i in c(1:length(x) ) )  y[i] <- x[i] * 5
+print(y)
 ## alternatively....
 y <- x * 5
-y
+print(y)
 ```
 
 ----
 
 ## Data structures
-Vectors
+Vector Indexing
 
-- Vector Indexing: important, but only if you like using vectors. And R.
-- In R, indexing begins at 1, not 0
-- Can index a vector by name, if elements are named
+- Important, but only if you like using vectors. And R.
+- Indexing begins at 1, not 0.
+- Can index a vector by name, if elements are named.
 
 ```r
-x[ c(1:5,8:10) ]         
+x <- 1:10
+x[ c( 1:5 , 8:10 ) ]         
 [1] 1  2  3  4  5  8  9 10
 
-x[ c(TRUE,FALSE) ]       ## recycling - common R feature. R will not give you a warning!
-[1] 1 3 5 7 9            ## very useful, but make sure you are comparing vectors of same length
+x[ c(TRUE , FALSE) ]         ## recycling - common R feature. R will not give you a warning!
+[1] 1 3 5 7 9                ## very useful, but make sure you are comparing vectors of same length
 
-x > 5                    ## Boolean vector 
+x > 5                        ## Boolean vector. mode = "logical"
 [1] FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE
 
 any(x > 5)              
@@ -147,46 +153,47 @@ all(x < 8)
 ----
 
 ## Data structures
-Vectors
+Vectorized Operations
 
-- Vectorized Operations: Easiest way to acheive speed in R - apply a function to a vector
+- Easiest way to acheive speed in R - apply a function to a vector
 
-```r
-f <- function (a,b) return(a^b)
-f(x,2)          
+```{r}
+f <- function (a,b) return(a ^ b)
+f(x , 2)          
 ```
 
 - Even operators such as `+`, `-`, `*` are functions
 
 ```r
-"*"(x,5)          ## returns 5 * x[1], 5 * x[2], ...
-'['(x, x >5 )     ## returns vector with x[1] > 5, x[2] > 5, ..., x[10] > 5
+"*"(x,5)              ## returns 5 * x[1], 5 * x[2], ...
+'['(x, x > 5 )        ## returns vector of values where x[1] > 5, x[2] > 5, ..., x[10] > 5 is TRUE
 
-                  ## if (condition) { do something } else { do something else }
-ifelse(x < 5, x^2, 0)  
+ifelse(x < 5, x^2, 0) ## if (condition) { do something } else { do something else }
 [1]  1  4  9 16  0  0  0  0  0  0
 ```
 
 ----
 
 ## Data structures
-Vectors
+Vectorized Operations continued
 
-- Vectorized Operations: More examples
-- When coming from a different language, probably best NOT to translate verbatim
-- Loops are your friend in C. In R, loops are like a bad friend - unrealiable at best.
+- When coming from a different language, probably best NOT to translate code verbatim
+- Loops are your friend in C. In R, loops are like a freeloading friend - unrealiable at best.
 - Under the hood, a vectorized operation is running a loop - in C. Much faster than in R.
 - Vectorization also provides clarity (but don't get carried away one-lining everthing)
 
 ```r
 logsum <- 0
-x <- seq(100,10000,by=10)
+x <- seq(100,1000000,by=10)
 for (i in 1:length(x)){
   logsum <- logsum + log(x[i])
 }
+logsum
+[1] 1281524                 ## this calculation takes about 0.17 seconds
 
 # R translation
-logsum <- sum(log(x))
+logsum <- sum(log(x))       ## this calculation takes about 0.002 seconds. 98% faster.
+[1] 1281524
 ```
 
 ----
@@ -194,37 +201,36 @@ logsum <- sum(log(x))
 ## Data structures
 Vectors
 
-- Careful when thinking you are vectorizing
+- Be careful when thinking you are vectorizing
 - Many R functions take a function as an argument
 - `sum`, `max`, `min`, ... are exceptions
 
 ```r
-mean(1,2,3)
+mean(1,3,2)
 [1] 1                 ## huh??
 
-mean(c(1,2,3))
+mean(c(1,3,2))
 [1] 2                 ## that's better
 
-max(1,2,3)
+max(1,3,2)
 [1] 3
 ```
 
 - Vectorization might not work when the current iteration depends on the previous
 - Try to put code outside of loops when possible
-- Use built-in functions such as rowSums(x) instead of apply(x,1,sum)...more later on this!
+- Use built-in functions such as `rowSums(x)` instead of `apply(x,1,sum)`...more on this later!
 
 ----
 
 ## Data structures
-Vectors
+Vectors: `NA` and `NULL`
 
-- `NA` and `NULL`
 - `NA` appears often in messy data, especially when a value doesn't exist
 - R will attempt to calculate `NA`, and therefore return `NA`
-- If R sees `NULL`, it skips it. `NULL` is non existant
+- If R sees `NULL`, it skips it. `NULL` is non existant. Yet it exists as a `NULL`. ?philosophy.
 
 ```r
-x <- c(5,10,NA,20,25)
+x <- c(5, 10, NA, 20, 25)
 mean(x)                 ## output is a numeric vector with NA as its value
 
 is.na(x)                ## commonly used when cleaning data sets
@@ -236,36 +242,33 @@ mean(x)                 ## 15
 
 length(NA)              ## NA is a logical constant of length 1
 [1] 1
-length(NULL)            ## NULL does not take any value. Undefined.
-[1] 0
+length(NULL)            ## NULL does not take any value. By definition, it's undefined
+[1] 0                   ## ?philosphy
 ```
 
 ----
 
 ## Data structures
-Vectors
+Vector Filtering
 
-- Filtering: Extremely useful for quick data analysis. Similar to indexing.
+- Extremely useful for quick data analysis. Similar to indexing.
 
-```{r,echo=TRUE,results='markup'}
+```r
 x <- 1:10
 x[ x > 5 ]          ## What's happening here?
 ```
-- `x > 5` is a function call to `">"(a,b)` which returns `TRUE` or `FALSE` on every element of vector x. 
-- Output of `x > 5` is boolean vector
-- When used as an index on `x`...
-
-----
-
-## Data structures
-Vectors
-
-- Filtering
-
+- `x > 5` is a function call to `">"(a,b)` which returns `TRUE` or `FALSE` on every element of vector `x`. 
+- Output of `x > 5` is `logical` vector. And when used as an index on `x`...
 ```{r}
 x[ c(FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE) ] 
 ```
 ...returns elements of `x` that are `TRUE`
+
+----
+
+## Data structures
+Vector Filtering
+
 
 Common filtering functions include:
 ```r
@@ -277,46 +280,47 @@ which(x > 5)          ## [1]  6  7  8  9 10
 ----
 
 ## Data structures
-Vectors
+Vectors: Summary
 
-- Summary
 - Everything in R is a vector
-  - Filtering and indexing
-  - `seq()`, `rep()`, `sample()`, `runif()`
-  - `any()`, `all()`, `which()`, `subset()`
-  - Recycling - R will not give you an error message
+- All elements are of one type, atomic vectors.
+- Vectorize whenever possible
+- Filtering and indexing are important concepts
+<ul>- `seq()`, `rep()`, `sample()`, `runif()`</ul>
+<ul>- `any()`, `all()`, `which()`, `subset()`</ul>
+- Recycling - useful but note that R will not give you an error message
 
 ----
 
 ## Data structures
 Matrices
 
-- Matrices are vectors with two additional attributes: rows and columns
+- Like vectors with two additional attributes: rows and columns
 - Column-major order: insert values in first column, going down, then continuing to second column, going down, as so on
 
-```{r echo = TRUE}
-x <- matrix(seq(1,6,by=1),nrow=3,ncol=2)       ## 3 by 2 matrix
-x
-x <- matrix(seq(1,6,by=1),nrow=3,ncol=3)       ## What's happening here??
+```{r echo = TRUE, error=FALSE}
+x <- matrix( seq(1,6,by=1), nrow=3, ncol=2)        ## 3 by 2 matrix
+print(x)
 ```
 ```r
-x <- matrix(seq(1,6,by=1),nrow=3)              ## same as above
-x <- matrix(seq(1,6,by=1),nrow=3,byrow=TRUE)   ## row-major order    
+x <- matrix( seq(1,6,by=1), nrow=3)                ## same as above
+x <- matrix( seq(1,6,by=1), nrow=3, byrow=TRUE)    ## row-major order    
+x <- matrix( seq(1,6,by=1), nrow=4)                ## is this ok?
+x <- matrix( seq(1,6,by=1), nrow=3, ncol=3)        ## is this ok?
 ```
 
 ----
 
 ## Data structures
-Matrices
-
-- Matrix operations
+Matrix operations
 
 ```r
-x <- matrix(seq(1,4),nrow=2,ncol=2)
+x <- matrix(seq(1,9),nrow=3,ncol=3)
 x + 5
 x * 2
 t(x)                        ## transpose
-x %*% x                     ## cross product
+x %*% x                     ## inner product
+crossprod(x,x)              ## cross product of x and x
 x * x                       ## element-wise product
 diag(x)                     ## diagonal components - identity matrix
 det(x)                      ## determinant
@@ -328,16 +332,14 @@ eigen(x)                    ## list of eigenvalues and eigenvectors
 ----
 
 ## Data structures
-Matrices
-
-- Matrix indexing and filtering
+Matrix indexing and filtering
 
 ```r
 x[2,1]            ## second row, first column
 
-x[,1]             ## all rows, first column. Vector form
+x[,1]             ## all rows, first column. Vector form, not matrix.
 
-x[,]              ## all rows, all columns. Same as print(x)
+x[,]              ## all rows, all columns. Same as print(x), or just x. 
 
 x[-1,]            ## remove first row. Negative indexing.
 ```
@@ -345,50 +347,41 @@ x[-1,]            ## remove first row. Negative indexing.
 ----
 
 ## Data structures
-Matrices
-
-- Matrix class
+Matrix class
 
 ```r
-x <- matrix( c(1:6), nrow=3, ncol=3)
+x <- matrix( c(1:9), nrow=3, ncol=3)
 class(x)                      ## matrix
 
-y<-x[1,]                      ## 3 element vector
+y <- x[1,]                    ## 3 element vector
 class(y)                      ## integer
 attributes(y)                 ## returns NULL
 
-y<-x[1,, drop=FALSE]     
+y <- x[1,, drop=FALSE]     
 class(y)                      ## matrix
 attributes(y)                 ## 1 by 3 matrix
 
 colnames(x) <- c( 'first col' , 'second col' , 'third col' )
 rownames(x) <- c( 'row 1' , 'row 2' , 'row 3' )
 ```
-- Higher dimension matrices also possible -> 'arrays'
+- Higher dimension matrices also possible, `arrays`
 
 ----
 
 ## Data structures
-Matrices
-
-- Exercise!
+Exercise!
 
 ```r
 a) 
 x <- matrix(rep(c(1,3,-1,2),5),ncol=4)
-(i)  What is returned in the following?
-     x[ x[1,] > 1,  c(1:2) ]
-(ii) Find the column in x which has the largest sum. Hint - max(x) is your friend.
+(i)  What is returned by the following? Do it by hand before typing it in.
+     mean(x[ x[1,] > 1,  c(1:2) ])
+(ii) Find the column in x which has the largest total.
 
 b) 
 y <- matrix(c(c(1,2,4,8),c(2,3,-1,-7),c(0,5,12,-4),c(3,4,5,0)),ncol=4)
-(i)  Calculate the trace of y (hint: trace of a matrix is the sum of the diagonals)
-(ii) Replace the 3rd column with the sum of the first two columns
-
-c)
-Calculate the singular value decomposition of y. Do this the long and short way.
-hint 1: SVD(A) = Q1*S*Q2, where Q1, Q2 contains the eigenvectors of A * t(A) and t(A) * A
-hint 2: Access elements of a list using "____$vectors", i.e. x$vectors
+(i)  Calculate the trace of y.
+(ii) Replace each element of the 3rd column with the median of the elements of the first, second and fourth columns for the same row. 
 ```
 
 ----
@@ -398,20 +391,12 @@ Lists
 
 - Combine objects of different types. Can have different `modes`.
 - Forms basis for `data.frames`
-- Vectors, matrices cannot be broken down into smaller components. Known as atomic vectors.
+- Vectors, matrices cannot be broken down into smaller components, hence atomic.
 - Lists can be broken down - known as recursive vectors.
 
-```r
-x <- list(title='R presentation', date=format(as.POSIXlt(Sys.time(),"EDT"),"%m %d %Y")
-          , num_attendees=10)
+```{r,echo=TRUE}
+x <- list(title='R presentation', date=format(as.POSIXlt(Sys.time(),"EDT"),"%m %d %Y"), num_attendees=10)
 print(x)
-
-$title
-[1] "R presentation"
-$date
-[1] "10 28 2013"
-$num_attendees
-[1] 10
 ```
 
 ----
@@ -422,8 +407,8 @@ Lists
 - Accessing `list` components
 
 ```{r}
-## one bracket  -  [  -  returns a list
-class(x[1])                  
+## one bracket  -  [  -  returns a list type
+x[1]
 ```
 
 ```r
@@ -431,6 +416,8 @@ class(x[1])
 x[[1]]
 x$title
 x[['title']]
+
+[1] "R presentation"
 ```
 
 ----
@@ -444,19 +431,17 @@ Lists
 names(x)      
 [1] "title"         "date"          "num_attendees"
 
-unlist(x)       ## flattens the list into a vector
+unlist(x)      ## flattens the list into a character vector
 
 pres_1 <- format(as.POSIXlt(Sys.Date(),"EDT"),"%m %d %Y") 
 pres_2 <- format(as.POSIXlt(Sys.Date()+30,"EDT"),"%m %d %Y") 
 
-x <- list(title='R presentation', date=pres_1, num_attendees=10)
+x <- list(title='1st R presentation', date=pres_1, num_attendees=10)
 y <- list(title='2nd R presentation', date=pres_2, num_attendees=20)
 
-list(x,y)       ## list of lists
-
-unclass(x)      ## like unlist(x) but applied to any object. Usually returns a list
+z <- list(x,y)       ## list of lists
+## z[[1]][1] is equivalent to x
 ```
-
 ----
 
 ## Data structures
@@ -467,12 +452,12 @@ Lists
 
 ```r
 n <- 100
-x <- rnorm(n, mean = 0, sd = 1)          ## sample of 100 random normal variables (standard)
+x <- rnorm(n, mean = 0, sd = 1)          ## sample of 100 random standard normal variables
 y <- 1 - 2 * x + rnorm(n)
 f <- y ~ x                               ## y ~ x is a formula object
-r <- lm(y ~ x)                           ## r is linear model object, i.e. linear regression
-                                        
-## the function str() - structure - is VERY useful in exploratory data analysis
+r <- lm(f)                               ## r is linear model object, i.e. linear regression
+
+## the function str() - "structure"" - is VERY useful in exploratory data analysis
 ## structure of r is a bunch of lists
 str(r)
 
@@ -483,18 +468,19 @@ r$residuals
 ----
 
 ## Data structures
-Data.frames
+Data Frames
 
-- The magic of R!
+- The most useful object in R for data analysis
 - Like a matrix of lists, of equal length
 - Many R functions and packages assume input is in the form of a `data.frame`
-- Allows for easy data manipulation
-- Every CSV or Text file you read in is a `data.frame`, i.e. data in the real world is a `data.frame`
+- Every CSV or Text file you read in is a `data.frame`, i.e. most real data comes in the form of a `data.frame`
 
 - Creating Data Frames
 
-```{r}
-z <- data.frame()
+```{r,message=TRUE,eval=TRUE}
+z <- data.frame()       ## data frame with 0 columns and 0 rows
+y <- data.frame(col1=c(1,2),col2=c("a","b"),row.names=c("row1","row2"))
+print(y)
 ```
 
 ----
@@ -502,16 +488,13 @@ z <- data.frame()
 ## Data structures
 Data.frames
 
-```{r}
-y <- data.frame(col1=c(1,2),col2=c("a","b"),row.names=c("row1","row2")); y
-```
 ```r
-x <- data.frame(matrix(sample(c(50:100),size=12,replace=TRUE),nrow=6,ncol=2))
+x <- data.frame(matrix( sample(c(50:100), size=12, replace=TRUE), nrow=6, ncol=2))
 
 ## return first column
-x[,1]                 ## type depends on column values
-x$X1                  ## type depends on column values
-x[1]                  ## type data.frame
+x[,1]                 ## type is vector
+x$X1                  ## type is vector
+x[1]                  ## type data.frame. 
 x['X1']               ## type data.frame
 ```
 
@@ -523,16 +506,16 @@ Data.frames
 - Helpful `data.frame` functions
 
 ```r
-x <- x[-6,]                   ## remove rows or columns with a "-" sign
-y <- data.frame(names=c("dave","jenny","scott","mary","harry"))
-z <- cbind(y,x)               ## column bind. Can be used on matrices too.
-                              ## if you cbind two vectors you get a matrix, NOT data.frame
+x <- x[-6,]                   ## remove rows or columns with a "-" sign. Like negative indexing.
+y <- data.frame(names = c("dave","jenny","scott","mary","harry") )
+z <- cbind(y, x)               ## column bind. Can be used on matrices too.
+                               ## if you cbind two vectors you get a matrix, NOT data.frame
 
 ## alternatively you can create columns implicitly
-x$names <- c("dave","jenny","scott","mary","harry")
+x$names <- c("dave" ,"jenny" ,"scott" ,"mary" ,"harry")
 
-w <- data.frame(names="megan",X1=82,X2=85)
-z <- rbind(z,w)               ## row bind
+w <- data.frame(names="megan", X1=82, X2=85)
+z <- rbind(z, w)               ## row bind
 
 ## make sure number of elements in row, column are consistent
 ```
@@ -543,18 +526,18 @@ z <- rbind(z,w)               ## row bind
 Data.frames
 
 ```r
-## explicitly set names for z
+## explicitly set columns names for z. Use rownames() for row names. Shocker.
 names(z) <- c("names", "Exam 1","Exam 2")
 
 ## get dimensions
 dim(z)                        
 [1] 6 3
 
-head(z)
-tail(z)
-```
+head(z)           ## default to first 6 rows
+tail(z)           ## default to last 6 rows
+``` 
 - While very useful, `data.frames` are more memory intensive than matrices
-- When initializing, if possible, preallocate `data.frame`
+- When initializing, if possible, preallocate `data.frame`, i.e. set size of `data.frame` before using it
 - Whenever possible, use matrices
 
 ----
@@ -562,15 +545,15 @@ tail(z)
 ## Data structures
 Factors
 
-- Used in many R packages and functions
 - Comes from the notion of categorical variables in statistics
-- Can be thought of as a `vector` with additional information - `levels`
+- Can be thought of as a `vector` with additional information - categories, or `levels`
 - Used to split up data sets; commonly seen as columns of `data.frame`s
 
 ```{r}
 x <- factor(c("finance", "tech","tech","auto","finance","energy","tech"))
-levels(x)                                 
-y <- factor(x,levels=c(levels(x),"tv"))   ## include new level, even though no tv data exists
+print(x)
+y <- factor(x, levels = c(levels(x),"tv") )   ## include new level, even though no tv data exists
+print(y)
 ```
 
 ---
@@ -583,8 +566,8 @@ Factors
 ```{r}
 wday <- c("mon","tues","mon","wed","fri","wed")
 wdayf <- factor(wday)
-sort(wdayf)
-wdayf <- factor(wday,levels=c('mon','tues','wed','thurs','fri')) ## let's add Friday as well
+sort(wdayf)                         ## did this do what we expected?
+wdayf <- factor(wday,levels=c('mon','tues','wed','thurs','fri')) ## let's add Thursday as well
 sort(wdayf)
 ```
 
@@ -599,7 +582,8 @@ Factors
 z$names2 <- NULL                            ## NULL removes the object from the factor (or list)
 z$gender <- c("m","f","m","f","m","f")
 z$party <- c("D","D","R","R","D","D")
-
+```
+```{r,eval=TRUE}
 tbl <- table(z$gender,z$party)              ## contingency table. class "table"
 addmargins(tbl)                             ## marginal sums
 ```
@@ -614,14 +598,18 @@ Factors
 ```r
 x <- seq(5,20,by=5)
 f <- factor(x)
+
+print(f)
+[1] 5  10 15 20
+Levels: 5 10 15 20
+
 as.numeric(f)                    ## huh??
 [1] 1 2 3 4
 
 as.numeric(as.character(f))
 [1]  5 10 15 20                  ## much better
-as.numeric(levels(f))[f]         ## more efficient due to less conversions
 
-## Is adding [f] necessary?
+as.numeric(levels(f))            ## more efficient due to less conversions
 ```
 
 ----
@@ -630,10 +618,10 @@ as.numeric(levels(f))[f]         ## more efficient due to less conversions
 Summary
 
 - `Vectors` - lifeblood of R
-- `Matrices` - great for Math and Stats functions
-- `Lists` - store complex objects
-- `Data.frames` - the power of R
-- `Factors` - good for statistics and categorization
+- `Matrices` - great for linear algebra and stats functions
+- `Lists` - store and access elements of complex objects
+- `Data.frames` - data analysis object of choice
+- `Factors` - good for statistics and categorization of data into groups
 
 ----
 
@@ -651,19 +639,19 @@ Summary
 `for()`
 
 ```r
-x <- seq(0,20,by=1) 
+x <- seq(0, 20, by=1)           ## default increment is 1 
 
 for (i in c(1:length(x))){
   x[i] <- x[i] * 2
 }
 
-## can be written on one line - but could make for messy code
+## can be written on one line - but careful to not make it too messy
 for (i in c(1:length(x))) x[i] <- x[i] * 2
 ```
 `while()`
 ```r
 i=1
-while (i < 22){
+while (i <= 21) {
   x[i] <- x[i] * 2
   i <- i + 1
 }
@@ -685,7 +673,7 @@ repeat {
 }
 ```
 `try()`
-```r
+```{r,echo=TRUE,eval=TRUE}
 try("hello" + 1, silent=FALSE)
 try("hello" + 1, silent=TRUE)
 tryCatch("hello" + 1, error = function(e) print("don't be ridiculous"))
@@ -700,10 +688,17 @@ tryCatch("hello" + 1, error = function(e) print("don't be ridiculous"))
 if (a == b) {
   # do something
 } else {                  ## the else statement MUST be on the same line as the 
-  # do something else     ## ending bracket of the if
+  # do something else     ## closing bracket of the if
 }
 
-if (a == b) do something
+if (a == b) {
+  # do something
+} 
+else {                    ## WRONG. returns lots of headaches. 
+  # do something else     
+}
+
+if (a == b) do something  ## one-liners
 
 ifelse (a == b, x, y)     ## use ifelse() on vectors
 ```
@@ -711,12 +706,11 @@ ifelse (a == b, x, y)     ## use ifelse() on vectors
 ----
 
 ## Control Structures
-
-- Exercise!
+Exercise!
 
 ```r
-(a) Write a loop to scan through an integer vector to determine the index of the 
-maximum value. The loop should terminate as soon as the index is obtained. Ignore ties.
+(a) Write a loop to scan through an integer vector and return the index of the 
+largest value. The loop should terminate as soon as the index is found. Ignore ties.
 
 (b) Redo the above using built-in R functions such as rank(), sort() and order()
 ```
@@ -737,20 +731,18 @@ maximum value. The loop should terminate as soon as the index is obtained. Ignor
 Functions
 
 - Write functions - it's good practice
-- each function should perform a specified task - easily understood inputs and outputs
-- function() is a built-in R function whose job is to create functions...#mindblown
+- Each function should perform a specified task - easily understood inputs and outputs
+- `function()` is a built-in R function whose job is to create functions...#mindblown
 
-```r
-power <- function(x,y){
+```{r}
+exponentiate <- function(x,y) {
   return(x^y)
 }
 
-power(2,4)
-[1] 16
+exponentiate(2,4)
 ```
 
-- The right hand side of power() has two arguments: the parameters and the body
-- To get the code of a function, you can just type its name -- with no brackets.
+- The right hand side of `exponentiate()` has two arguments: the parameters and the body
 
 ----
 
@@ -758,11 +750,13 @@ power(2,4)
 Arguments
 
 ```r
-formals(power)        # $x   $y   These are the arguments to power
-body(power)           # { return (x^y) }
-power                 # prints out the entire function - good if you forget what's in it!
+formals(exponentiate)        # $x   $y   These are the arguments to exponentiate()
+body(exponentiate)           # { return (x^y) }
 ```
-- try it out on any built-in R function to see its innards
+```{r}
+exponentiate                 # prints out the entire function - good if you forget what's in it!
+```
+- Try it out on any built-in R function to see its innards
 - Note that it won't work on some functions that are written in C (e.g  sum, mean)
 
 ----
@@ -781,10 +775,10 @@ f <- function(x, ...) {
 }
 ```
 - Anonymous functions. Single use. No name. No feelings exchanged.
-```r
-apply (x, 2, function(x) sum[x>2])
-```
 
+```{r}
+sapply (x, function(x) x*2)
+```
 ----
 
 ## Functions
@@ -796,10 +790,10 @@ Environment and Scope
 d <- 8
 f <- function(y){
   x <- 3 * y
-  h <- function (x,d){
+  h <- function (){
     return(y*(x+d))
   }
-  return(x+h(x,d))
+  return(x+h())
 }
 f(2)
 
@@ -811,13 +805,10 @@ f(2)
 ----
 
 ## Functions
-Environment and scope
+Exercise!
 
-- Mini Exercise!
-
-```r
 Write a function that finds the maximum value in corresponding indices for two vectors.
-
+```r
 e.g. 
 x <- c(1,2,3,4)
 y <- c(0,3,5,4)
@@ -828,42 +819,35 @@ y <- c(0,3,5,4)
 ----
 
 ## Functions
-Environment and scope
-
+# Environment and scope
+<space>
 ```r
 ls()           # returns all the variables in the environment
                # good to know when you've created a ton and are starting to lose track
-rm(x)          # rm(x) deletes x...rm(list=ls()) is usually not a great idea!
-
-f <- function (x){
-  x <<- 2      # declare a global variable within a function. Usually not good practice.
-  return(x)
-}
-x<-1
-f(x)
-
-# You can even make custom operators!
+rm(x)          # rm(x) removes x...rm(list=ls()) is usually not a great idea!
+```
+- You can even make custom operators!
+```{r}
 "%powerUp%" <- function(a,b) return (a^b)
 
 3%powerUp%2                                 
-[1] 9
 ```
 
 ----
 
 ## Functions
-Pointers
-
+# Pointers
+<space>
 - R does not have pointer variables like Python
 
 ```r
-# in Python
->>> x <- c(5,2,8)
+## in Python
+>>> x = c(5,2,8)
 >>> x.sort()             ## this doesn't exist in R
 >>> x
 [2, 5 , 8]
 
-# in R
+## in R
 x <- c(5,2,8)
 sort(x)
 [1] 2 5 8
@@ -877,38 +861,35 @@ x
 ----
 
 ## Functions
-Generic functions
-
+# Generic functions
+<space>
 - R is a dialect of S3 (S4 is the latest)
 - S3 has generic functions, such as `print()`, `plot()`, `summary()`
 
 ```r
-data(cars)
+data(cars)              ## load built in dataset
 fit <- lm(dist~speed,data=cars)
 summary(fit)
 
-## different output from the same function!
+## same function call, on a different object type
 summary(c(1,2,3))
 
 ## lists out all the methods for the summary function
 methods(summary)  
 ```
 
-- there is a `summary.lm()` function and a `summary.default()` function
-- makes it harder to get the object that is printed, but this is possible
+- There is a `summary.lm()` function and a `summary.default()` function
+- Makes it harder to get the object that is printed, but this is possible
 
 ----
 
 ## Functions
-Generic functions
+# Exercise!
+<space>
 
-- Exercise!
-
-```r
-a) Get the Adjusted R-squared from the regression of distance on speed example
-b) Get the t-value of the X variable (i.e. speed)
-c) Predict the braking distance if going 200 miles per hour.
-```
+<ol>a) Get the Adjusted R-squared from the regression of distance on speed in the cars dataset</ol>
+<ol>b) Get the t-value of the X variable (i.e. speed)</ol>
+<ol>c) Predict the braking distance if going 200 miles per hour</ol>
 
 ----
 
@@ -922,8 +903,8 @@ c) Predict the braking distance if going 200 miles per hour.
 ----
 
 ## Commonly used built-in functions
-`apply()`
-
+# `apply()`
+<space>
 - Apply a function to a row or column of a matrix
 
 ```r
@@ -940,30 +921,33 @@ apply(x,1,function(x) x^2)                       ## apply function to every elem
 ----
 
 ## Commonly used built-in functions
-`lapply()`, `tapply()`, `sapply()`
-
+# `lapply()`, `tapply()`, `sapply()`
+<space>
 - like `apply()` for other data structures
 
 ```r
 lapply(list(z$'Exam 1',z$'Exam 2'),mean)    ## mean of Exam scores; returns a list
                                             ## like apply() but can be used on data.frames
 sapply(list(z$'Exam 1',z$'Exam 2'),mean)    ## mean of Exam scores; returns a vector
-sapply(list(z$'Exam 1',z$'Exam 2'),mean,simplify=FALSE)   ## same as lappy()
-
+sapply(list(z$'Exam 1',z$'Exam 2'), mean, simplify=FALSE)   ## same as lappy()
+```
+```{r,eval=TRUE}
 ## find mean exam 1 scores, split by party
-tapply(z$'Exam 1',z$party,FUN = mean,simplify=TRUE)      ## simplify determines output type
+tapply(z$'Exam 1', z$party, FUN = mean, simplify=TRUE)      ## simplify determines output type
 ```
 
 ----
 
 ## Commonly used built-in functions
-`mapply()`
-
-- apply a function to corresponding elements of a list
-- simplify determines output type - defaults to TRUE
+# `mapply()`
+<space>
+- Apply a function to corresponding elements of a list
 
 ```r
-a<-c(1:5);b<-c(6:10);d<-c(11:15);
+a<-c(1:5)
+b<-c(6:10)
+d<-c(11:15)
+
 mapply(sum,a,b,d)
 sum(a[1],b[1],d[1])
 sum(a[2],b[2],d[2])
@@ -974,15 +958,16 @@ mapply(mean,a,b,d)            ## What's happening here?
 ----
 
 ## Commonly used built-in functions
-`by()`, `cut()`, `aggregate()`, `split()`
-
+# `by()`, `cut()`, `aggregate()`, `split()`
+<space>
 - Like `apply()`, but used on `data.frames`
-- Split, apply, combine
-- Package `plyr` is very popular and useful, but important to learn Base R first.
-
+- [Split, apply, combine][1] is an important concept in data analysis
+- Package [`plyr`][2] is very popular and useful, but important to learn Base R first.
+[1]: http://www.jstatsoft.org/v40/i01/paper
+[2]: http://cran.r-project.org/web/packages/plyr/index.html
 ```r
-aggregate(z[,c(2:3)],by=list(z$party),mean)          ## mean Exam score by party
-aggregate(z[,c(2:3)],by=list(z$part, z$gender),sum)  ## sum by party and gender
+aggregate(z[,c(2:3)], by=list(z$party), mean)          ## mean Exam score by party
+aggregate(z[,c(2:3)], by=list(z$part, z$gender), sum)  ## sum by party and gender
 
 ## same as tapply() but for data.frames (instead of arrays)
 ## returns class "by"
@@ -990,7 +975,8 @@ by(z$'Exam 1',z$party,sum)
 
 ## convert numeric column of data.frame into factor
 ## great for binning data
-cut()
+z$age <- c(21,29,38,41,26,50)
+cut(z$age,breaks=c(20,30,40,50))
 
 split(z,f = z$gender)                       ## split a dataframe according to a factor
 ```
@@ -998,39 +984,34 @@ split(z,f = z$gender)                       ## split a dataframe according to a 
 ----
 
 ## Commonly used built-in functions
-Exercise!
+# Exercise!
+<space>
 
-```r
-a)  
-Find the average grade for each student.
-    D is between 50 and 59. C is between 60 and 69. B is between 70 and 79. 
-    A is between 80 and 100.
+a)  Create a column for the average grade for each student. Label it.
+    <li>D is between 50 and 59</li> 
+    <li>C is between 60 and 69</li> 
+    <li>B is between 70 and 79</li> 
+    <li>A is between 80 and 100</li>
 
-b)  
-Execute the equivalent of the following SQL code, in but in R:
-      SELECT nature, SUM(amount)
-      FROM expenses
-      GROUP BY nature
-c)
-(i)   The function system.time() returns timings for R operations. Examine the help documentation about this function. 
-(ii)  Compute the median standard deviation of every column of a 100 by 100 matrix. Initialize a 100 x 100 matrix using a Random Uniform Variable, between 20 and 50 in each cell. Compute the median standard deviation of each column using:
-  (1) A for-loop
-  (2) An apply function
-(iii) Which is the fastest?
-```
+b)
+<li>(i)   The function system.time() returns timings for R operations. Examine the help documentation for this function. </li>
+<li>(ii)  Compute the median standard deviation of every column of a 100 by 100 matrix. Initialize a 100 x 100 matrix using a Random Uniform Variable, between 20 and 50 in each cell. Compute the median standard deviation of each column using:</li>
+  <ol>(1) A for-loop</ol>
+  <ol>(2) An apply function</ol>
+<li>(iii) Which is the fastest?</li>
 
 ----
 
 ## String Manipulation
-Basic string functions
-
+# Basic string functions
+<space>
 ```r
 example <- c("THIS IS AN EXAMPLE","and so is this","this is not","hello world","extra")
-grep("an",example)            
+grep("an", example)                        ## return index of occurence "an"
 [1] 2
-grep("an",example,ignore.case=TRUE)
+grep("an", example, ignore.case=TRUE)
 [1] 1 2
-grep("an",example,ignore.case=TRUE,value=TRUE)
+grep("an", example, ignore.case=TRUE, value=TRUE)  
 [1] "THIS IS AN EXAMPLE" "and so is this" 
 
 nchar(example)
@@ -1040,15 +1021,15 @@ paste(example[1],example[2])
 [1] "THIS IS AN EXAMPLE and so is this"
 files <- c("ex1","ex2")
 for (i in files){
-   ggsave(filename = paste("Title",i,".pdf"))
+   save(filename = paste("Title",i,".pdf"))
 }
 ```
 
 ----
 
 ## String Manipulation
-Basic string functions
-
+# Basic string functions
+<space>
 ```r
 # formatting strings
 sprintf("%f",exp(1))
@@ -1057,17 +1038,18 @@ sprintf("%0.2f",exp(1))
 [1] "2.72"
 sprintf("Today's date is %s",format(Sys.Date(),"%d %b %Y"))
 [1] "Today's date is 31 Oct 2013"
+```
 
-example2 <- "Substring takes a sub-set of...the string!...It's nuts!"
-paste(substr(example2,19,21),substr(example2,23,25),sep='')
-[1] "subset"
+```{r}
+example2 <- "Substring takes a subset of...the string!...It's nuts!"
+paste(substr(example2,19,21),substr(example2,22,24),sep='')
 ```
 
 ----
 
 ## String Manipulation
-Basic string functions
-
+# Basic string functions
+<space>
 ```r
 sp <- strsplit(example2,split="of")
 sp
@@ -1088,12 +1070,13 @@ gregexpr("!",example2)    ## all occurrences of "!" in example2
 ----
 
 ## String Manipulation
-Exercise!
-
+# Exercise!
+<space>
 ```r
 a) Convert the following character vector into a 3 column dataframe. Name each column.
 b) Format the numbers to be percentages with 2 decimal places.
 c) Find the total score for people with J-letter first names. 
+d) Find the most common weekday.
 
 char_vec <- c("{'al' 'einst'} score:0.4503-[12302013]",
 "{'isaac' 'knewt'} score:0.0007-[11202013]",
@@ -1105,16 +1088,15 @@ char_vec <- c("{'al' 'einst'} score:0.4503-[12302013]",
 "{'harry' 'henderson'} score:0.5456-[08112012]",
 "{'johnny' 'walker'} score:0.309118-[08212011]")
 
-d) Print out the following sentence with one word on each line:
+e) Print out the following sentence with one word on each line:
 y <- "This is a sentence."
 ```
 
 ----
 
 ## Miscellaneous Tips and tricks
-
-- Basic statistical functions
-- `mean(x)`, `median(x)`, `sd(x)`, `var(x)`, `cov(x,y)`, `cor(x,y)`
+# Basic statistical functions
+<br>
 
 ```r
 x <- rnorm(1000,85,5)
@@ -1131,9 +1113,8 @@ cor(x,y)            ## [1] 0.02883522
 ----
 
 ## Miscellaneous Tips and tricks
-
-- Be mindful of operator precendence
-
+# Operator precedence
+<space>
 ```r
 1:n-1       ## wrong
 1:(n-1)     ## this is what you want
@@ -1152,7 +1133,8 @@ x ^ 2.5     ## not so nice
 ----
 
 ## Miscellaneous Tips and tricks
-
+# Boolean operations
+<space>
 - Boolean operations coerce numbers to being `TRUE`
 
 ```r
@@ -1167,9 +1149,10 @@ x %in% c(4,6)       ## best
 ----
 
 ## Miscellaneous Tips and tricks
-
-- coercion - sometimes it's good to coerce
-- `read.csv()` returns a `data.frame`. What if you want to do math? 
+# Coercion
+<space>
+- Sometimes it's good to coerce
+- `read.csv()` returns a `data.frame`. What if you want to do math? Matrices are better.
 
 ```r
 x <- data.frame(num=c(1,2,3,4))
@@ -1186,8 +1169,8 @@ as.data.frame()
 ----
 
 ## Miscellaneous Tips and tricks
-`print()` vs `cat()`
-
+# `print()` vs `cat()`
+<space>
 - `print()` is a generic function
 - `cat()` is a concatenate function
 
@@ -1195,10 +1178,12 @@ as.data.frame()
 x <- 2
 print("One plus one is",x)
 [1] "One plus one is"
+
 ## alternatively...
 print("One plus one is");print(x);
 [1] "One plus one is"
 [1] 2
+
 ## even better...
 cat(paste("One plus one is",x))
 One plus one is 2
@@ -1207,10 +1192,11 @@ One plus one is 2
 ----
 
 ## Miscellaneous Tips and tricks
-`class` vs `mode`
-
+# `class` vs `mode`
+<space>
 - An object's `mode` determines how it's stored in memory 
-- An objects `class` determines its abstract type, a concept borrowed from OOP.
+- An object's `class` determines its abstract type, a concept borrowed from OOP.
+- Most statistical programs don't have the OOP concept.
 
 ```{r}
 x <- data.frame(scores=c(80,90,70))
@@ -1222,8 +1208,8 @@ cat(paste(class(x),class(y)))
 ----
 
 ## Miscellaneous Tips and tricks
-`do.call()`
-
+# `do.call()`
+<space>
 - lots of real data comes in row form, each element is a different `mode`
 - many times stored as a list. Use `do.call` to combine the elements into a `data.frame`
 
@@ -1239,9 +1225,8 @@ df
 ----
 
 ## Miscellaneous Tips and tricks
-
-- Mini Exercise!
-
+# Exercise!
+<space>
 ```r
 a)
 ## Create a new column called num2 for which each value is double the corresponding value in num
@@ -1250,7 +1235,7 @@ x <- data.frame(num=factor(c(1.0,0.03,8.0, 0.4)))
 
 b)
 ## Find the letters in z corresponding to the indices of even numbers in y
-y <- c(1,2,NA,4,5,8,5,2)
+y <- c(1,2,NA,4,5,8,5,2,3)
 z <- c("f","g","e","i","l","o","p","u")
 ```
 
@@ -1260,19 +1245,26 @@ z <- c("f","g","e","i","l","o","p","u")
 
 1. Object oriented programming with S3 and S4 
 2. Input/output
-3. Packages: `ggplot`, `reshape`, `plyr`, `forecast`, `MASS`
+3. Packages: [`ggplot`][1], [`reshape`][2], [`plyr`][3], [`forecast`][4], [`MASS`][5]
 4. Debugging: `browser()`, `warnings()`
 5. Parallelizing
 6. Much more
+[1]: http://cran.r-project.org/web/packages/ggplot2/index.html
+[2]: http://cran.r-project.org/web/packages/reshape/index.html
+[3]: http://cran.r-project.org/web/packages/plyr/index.html
+[4]: http://cran.r-project.org/web/packages/forecast/index.html
+[5]: http://cran.r-project.org/web/packages/MASS/index.html
 
 ----
 
 ## Resources
 
-1. The Art of R Programming
-2. R cookbook
-3. Computing for Data Analysis (Coursera)
-
+1. [The Art of R Programming][1]
+2. [R cookbook][2]
+3. [Computing for Data Analysis][3] (Coursera)
+[1]: http://shop.oreilly.com/product/9780596809164.do
+[2]: http://nostarch.com/artofr.htm
+[3]: https://www.coursera.org/course/compdata
 ----
 
 ## Questions?
