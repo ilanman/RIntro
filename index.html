@@ -51,6 +51,7 @@
 <li>Functions</li>
 <li>Commonly used built in functions</li>
 <li>String manipulation</li>
+<li>Miscellaneous Tips and tricks</li>
 </ol>
 
   </article>
@@ -297,7 +298,7 @@ ifelse(x &lt; 5, x^2, 0) ## if (condition) { do something } else { do something 
     <h2>Data structures</h2>
   </hgroup>
   <article>
-    <h1>Vectorized Operations continued</h1>
+    <h1>Vectorized Operations</h1>
 
 <p><space></p>
 
@@ -330,7 +331,7 @@ logsum &lt;- sum(log(x))       ## this calculation takes about 0.002 seconds. 98
     <h2>Data structures</h2>
   </hgroup>
   <article>
-    <h1>Vectors</h1>
+    <h1>Vectorized Operations</h1>
 
 <p><space></p>
 
@@ -436,7 +437,7 @@ x[ x &gt; 5 ]          ## What&#39;s happening here?
   <article>
     <h1>Vector Filtering</h1>
 
-<p><space>
+<p><br>
 Common filtering functions include:</p>
 
 <pre><code class="r">subset(x, x &gt; 5)      ## [1]  6  7  8  9 10
@@ -476,6 +477,24 @@ which(x &gt; 5)          ## [1]  6  7  8  9 10
     <h2>Data structures</h2>
   </hgroup>
   <article>
+    <h1>Exercise!</h1>
+
+<p><br>
+Compute the following:</p>
+
+<p>a. \(\large \sum_{n=1}^{500} \ln{(i^{2})} + \frac{2}{i}\)</p>
+
+<p>b. \(\large \sum_{i=1}^{10}\sum_{n=1}^{i} \frac{n}{i}\)</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-17" style="background:;">
+  <hgroup>
+    <h2>Data structures</h2>
+  </hgroup>
+  <article>
     <h1>Matrices</h1>
 
 <p><space></p>
@@ -505,7 +524,7 @@ x &lt;- matrix( seq(1,6,by=1), nrow=3, ncol=3)        ## is this ok?
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-17" style="background:;">
+      <slide class="" id="slide-18" style="background:;">
   <hgroup>
     <h2>Data structures</h2>
   </hgroup>
@@ -534,7 +553,7 @@ eigen(x)                    ## list of eigenvalues and eigenvectors
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-18" style="background:;">
+      <slide class="" id="slide-19" style="background:;">
   <hgroup>
     <h2>Data structures</h2>
   </hgroup>
@@ -556,7 +575,7 @@ x[-1,]            ## remove first row. Negative indexing.
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-19" style="background:;">
+      <slide class="" id="slide-20" style="background:;">
   <hgroup>
     <h2>Data structures</h2>
   </hgroup>
@@ -588,7 +607,7 @@ rownames(x) &lt;- c( &#39;row 1&#39; , &#39;row 2&#39; , &#39;row 3&#39; )
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-20" style="background:;">
+      <slide class="" id="slide-21" style="background:;">
   <hgroup>
     <h2>Data structures</h2>
   </hgroup>
@@ -613,7 +632,7 @@ y &lt;- matrix(c(c(1,2,4,8),c(2,3,-1,-7),c(0,5,12,-4),c(3,4,5,0)),ncol=4)
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-21" style="background:;">
+      <slide class="" id="slide-22" style="background:;">
   <hgroup>
     <h2>Data structures</h2>
   </hgroup>
@@ -638,7 +657,7 @@ print(x)
 ## [1] &quot;R presentation&quot;
 ## 
 ## $date
-## [1] &quot;12 01 2013&quot;
+## [1] &quot;12 04 2013&quot;
 ## 
 ## $num_attendees
 ## [1] 10
@@ -648,7 +667,7 @@ print(x)
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-22" style="background:;">
+      <slide class="" id="slide-23" style="background:;">
   <hgroup>
     <h2>Data structures</h2>
   </hgroup>
@@ -681,7 +700,7 @@ x[[&#39;title&#39;]]
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-23" style="background:;">
+      <slide class="" id="slide-24" style="background:;">
   <hgroup>
     <h2>Data structures</h2>
   </hgroup>
@@ -709,11 +728,16 @@ z &lt;- list(x,y)       ## list of lists
 ## z[[1]][1] is equivalent to x
 </code></pre>
 
-<hr>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
 
-<h2>Data structures</h2>
-
-<h1>Lists</h1>
+      <slide class="" id="slide-25" style="background:;">
+  <hgroup>
+    <h2>Data structures</h2>
+  </hgroup>
+  <article>
+    <h1>Lists</h1>
 
 <p><space></p>
 
@@ -740,7 +764,7 @@ r$residuals
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-24" style="background:;">
+      <slide class="" id="slide-26" style="background:;">
   <hgroup>
     <h2>Data structures</h2>
   </hgroup>
@@ -771,7 +795,7 @@ print(y)
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-25" style="background:;">
+      <slide class="" id="slide-27" style="background:;">
   <hgroup>
     <h2>Data structures</h2>
   </hgroup>
@@ -793,7 +817,7 @@ x[&#39;X1&#39;]               ## type data.frame
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-26" style="background:;">
+      <slide class="" id="slide-28" style="background:;">
   <hgroup>
     <h2>Data structures</h2>
   </hgroup>
@@ -824,7 +848,7 @@ z &lt;- rbind(z, w)               ## row bind
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-27" style="background:;">
+      <slide class="" id="slide-29" style="background:;">
   <hgroup>
     <h2>Data structures</h2>
   </hgroup>
@@ -845,16 +869,16 @@ tail(z)           ## default to last 6 rows
 </code></pre>
 
 <ul>
-<li>While very useful, <code>data.frames</code> are more memory intensive than matrices</li>
+<li>While very useful, <code>data.frames</code> are more memory intensive than <code>matrices</code></li>
 <li>When initializing, if possible, preallocate <code>data.frame</code>, i.e. set size of <code>data.frame</code> before using it</li>
-<li>Whenever possible, use matrices</li>
+<li>Whenever possible, use <code>matrices</code></li>
 </ul>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-28" style="background:;">
+      <slide class="" id="slide-30" style="background:;">
   <hgroup>
     <h2>Data structures</h2>
   </hgroup>
@@ -889,7 +913,7 @@ print(y)
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-29" style="background:;">
+      <slide class="" id="slide-31" style="background:;">
   <hgroup>
     <h2>Data structures</h2>
   </hgroup>
@@ -923,7 +947,7 @@ sort(wdayf)
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-30" style="background:;">
+      <slide class="" id="slide-32" style="background:;">
   <hgroup>
     <h2>Data structures</h2>
   </hgroup>
@@ -941,18 +965,20 @@ z$gender &lt;- c(&quot;m&quot;,&quot;f&quot;,&quot;m&quot;,&quot;f&quot;,&quot;m
 z$party &lt;- c(&quot;D&quot;,&quot;D&quot;,&quot;R&quot;,&quot;R&quot;,&quot;D&quot;,&quot;D&quot;)
 </code></pre>
 
-<pre><code class="r">tbl &lt;- table(z$gender, z$party)  ## contingency table. class &#39;table&#39;
-addmargins(tbl)  ## marginal sums
-</code></pre>
+<pre><code class="r">tbl &lt;- table(z$gender,z$party)              ## contingency table. class &quot;table&quot;
+addmargins(tbl)           ## marginal sums
 
-<pre><code>## Error: invalid &#39;times&#39; argument
+##      D R Sum
+##  f   2 1   3
+##  m   2 1   3
+# # Sum 4 2   6
 </code></pre>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-31" style="background:;">
+      <slide class="" id="slide-33" style="background:;">
   <hgroup>
     <h2>Data structures</h2>
   </hgroup>
@@ -985,7 +1011,7 @@ as.numeric(levels(f))            ## more efficient due to less conversions
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-32" style="background:;">
+      <slide class="" id="slide-34" style="background:;">
   <hgroup>
     <h2>Data structures</h2>
   </hgroup>
@@ -1006,7 +1032,7 @@ as.numeric(levels(f))            ## more efficient due to less conversions
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-33" style="background:;">
+      <slide class="" id="slide-35" style="background:;">
   <hgroup>
     <h2>Control Structures</h2>
   </hgroup>
@@ -1023,7 +1049,7 @@ as.numeric(levels(f))            ## more efficient due to less conversions
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-34" style="background:;">
+      <slide class="" id="slide-36" style="background:;">
   <hgroup>
     <h2>Control Structures</h2>
   </hgroup>
@@ -1044,6 +1070,8 @@ for (i in c(1:length(x))) x[i] &lt;- x[i] * 2
 
 <h1><code>while()</code></h1>
 
+<p><space></p>
+
 <pre><code class="r">i=1
 while (i &lt;= 21) {
   x[i] &lt;- x[i] * 2
@@ -1055,7 +1083,7 @@ while (i &lt;= 21) {
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-35" style="background:;">
+      <slide class="" id="slide-37" style="background:;">
   <hgroup>
     <h2>Control Structures</h2>
   </hgroup>
@@ -1076,6 +1104,8 @@ repeat {
 
 <h1><code>try()</code></h1>
 
+<p><space></p>
+
 <pre><code class="r">try(&quot;hello&quot; + 1, silent = FALSE)
 try(&quot;hello&quot; + 1, silent = TRUE)
 tryCatch(&quot;hello&quot; + 1, error = function(e) print(&quot;don&#39;t be ridiculous&quot;))
@@ -1088,7 +1118,7 @@ tryCatch(&quot;hello&quot; + 1, error = function(e) print(&quot;don&#39;t be rid
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-36" style="background:;">
+      <slide class="" id="slide-38" style="background:;">
   <hgroup>
     <h2>Control Structures</h2>
   </hgroup>
@@ -1100,7 +1130,7 @@ tryCatch(&quot;hello&quot; + 1, error = function(e) print(&quot;don&#39;t be rid
 <pre><code class="r">if (a == b) {
   # do something
 } else {                  ## the else statement MUST be on the same line as the 
-  # do something else     ## closing bracket of the if
+  # do something else     ## closing bracket of the if()
 }
 
 if (a == b) {
@@ -1119,7 +1149,7 @@ ifelse (a == b, x, y)     ## use ifelse() on vectors
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-37" style="background:;">
+      <slide class="" id="slide-39" style="background:;">
   <hgroup>
     <h2>Control Structures</h2>
   </hgroup>
@@ -1131,14 +1161,14 @@ ifelse (a == b, x, y)     ## use ifelse() on vectors
 <pre><code class="r">(a) Write a loop to scan through an integer vector and return the index of the 
 largest value. The loop should terminate as soon as the index is found. Ignore ties.
 
-(b) Redo the above using built-in R functions such as rank(), sort() and order()
+(b) Redo the above using built-in R functions such as rank(), sort() and order().
 </code></pre>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-38" style="background:;">
+      <slide class="" id="slide-40" style="background:;">
   <hgroup>
     <h2>Functions</h2>
   </hgroup>
@@ -1155,7 +1185,7 @@ largest value. The loop should terminate as soon as the index is found. Ignore t
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-39" style="background:;">
+      <slide class="" id="slide-41" style="background:;">
   <hgroup>
     <h2>Functions</h2>
   </hgroup>
@@ -1188,7 +1218,7 @@ exponentiate(2, 4)
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-40" style="background:;">
+      <slide class="" id="slide-42" style="background:;">
   <hgroup>
     <h2>Functions</h2>
   </hgroup>
@@ -1207,19 +1237,19 @@ body(exponentiate)           # { return (x^y) }
 <pre><code>## function(x, y) {
 ##     return(x^y)
 ## }
-## &lt;environment: 0x7f852e0d8db8&gt;
+## &lt;environment: 0x7f852f59c8d8&gt;
 </code></pre>
 
 <ul>
 <li>Try it out on any built-in R function to see its innards</li>
-<li>Note that it won&#39;t work on some functions that are written in C (e.g  sum, mean)</li>
+<li>Note that it won&#39;t work on some functions that are written in C (e.g  <code>sum()</code>, <code>mean()</code>)</li>
 </ul>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-41" style="background:;">
+      <slide class="" id="slide-43" style="background:;">
   <hgroup>
     <h2>Functions</h2>
   </hgroup>
@@ -1244,23 +1274,14 @@ f &lt;- function(x, ...) {
 <li>Anonymous functions. Single use. No name. No feelings exchanged.</li>
 </ul>
 
-<pre><code class="r">sapply(x, function(x) x * 2)
-</code></pre>
-
-<pre><code>## Warning: * not meaningful for factors Warning: * not meaningful for
-## factors Warning: * not meaningful for factors Warning: * not meaningful
-## for factors Warning: * not meaningful for factors Warning: * not
-## meaningful for factors Warning: * not meaningful for factors
-</code></pre>
-
-<pre><code>## [1] NA NA NA NA NA NA NA
+<pre><code class="r">sapply (x, function(x) x*2)
 </code></pre>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-42" style="background:;">
+      <slide class="" id="slide-44" style="background:;">
   <hgroup>
     <h2>Functions</h2>
   </hgroup>
@@ -1292,7 +1313,7 @@ f(2)
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-43" style="background:;">
+      <slide class="" id="slide-45" style="background:;">
   <hgroup>
     <h2>Functions</h2>
   </hgroup>
@@ -1300,10 +1321,9 @@ f(2)
     <h1>Exercise!</h1>
 
 <p><br>
-Write a function that finds the maximum value in corresponding indices for two vectors.</p>
+Write a function that finds the maximum value in corresponding indices for two vectors. For example:</p>
 
-<pre><code class="r">e.g. 
-x &lt;- c(1,2,3,4)
+<pre><code class="r">x &lt;- c(1,2,3,4)
 y &lt;- c(0,3,5,4)
 ## output should be 
 [1] 1 3 5 4
@@ -1313,7 +1333,7 @@ y &lt;- c(0,3,5,4)
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-44" style="background:;">
+      <slide class="" id="slide-46" style="background:;">
   <hgroup>
     <h2>Functions</h2>
   </hgroup>
@@ -1343,7 +1363,7 @@ rm(x)          # rm(x) removes x...rm(list=ls()) is usually not a great idea!
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-45" style="background:;">
+      <slide class="" id="slide-47" style="background:;">
   <hgroup>
     <h2>Functions</h2>
   </hgroup>
@@ -1377,7 +1397,7 @@ x
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-46" style="background:;">
+      <slide class="" id="slide-48" style="background:;">
   <hgroup>
     <h2>Functions</h2>
   </hgroup>
@@ -1388,11 +1408,11 @@ x
 
 <ul>
 <li>R is a dialect of S3 (S4 is the latest)</li>
-<li>S3 has generic functions, such as <code>print()</code>, <code>plot()</code>, <code>summary()</code></li>
+<li>S3 has generic functions, such as <code>print()</code>, <code>plot()</code>, <code>summary()</code>. Concept of OOP.</li>
 </ul>
 
 <pre><code class="r">data(cars)              ## load built in dataset
-fit &lt;- lm(dist~speed,data=cars)
+fit &lt;- lm(dist ~ speed, data=cars)
 summary(fit)
 
 ## same function call, on a different object type
@@ -1411,7 +1431,7 @@ methods(summary)
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-47" style="background:;">
+      <slide class="" id="slide-49" style="background:;">
   <hgroup>
     <h2>Functions</h2>
   </hgroup>
@@ -1420,17 +1440,17 @@ methods(summary)
 
 <p><space></p>
 
-<ol>a) Get the Adjusted R-squared from the regression of distance on speed in the cars dataset</ol>
-
-<ol>b) Get the t-value of the X variable (i.e. speed)</ol>
-
-<ol>c) Predict the braking distance if going 200 miles per hour</ol>
+<p>a) Get the Adjusted R-squared from the regression of distance on speed in the cars dataset
+<br>
+b) Get the t-value of the X variable (i.e. speed)
+<br>
+c) Predict the braking distance if going 200 miles per hour</p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-48" style="background:;">
+      <slide class="" id="slide-50" style="background:;">
   <hgroup>
     <h2>Commonly used built-in functions</h2>
   </hgroup>
@@ -1446,7 +1466,7 @@ methods(summary)
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-49" style="background:;">
+      <slide class="" id="slide-51" style="background:;">
   <hgroup>
     <h2>Commonly used built-in functions</h2>
   </hgroup>
@@ -1475,7 +1495,7 @@ apply(x,1,function(x) x^2)                       ## apply function to every elem
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-50" style="background:;">
+      <slide class="" id="slide-52" style="background:;">
   <hgroup>
     <h2>Commonly used built-in functions</h2>
   </hgroup>
@@ -1495,17 +1515,17 @@ sapply(list(z$&#39;Exam 1&#39;,z$&#39;Exam 2&#39;), mean, simplify=FALSE)   ## s
 </code></pre>
 
 <pre><code class="r">## find mean exam 1 scores, split by party
-tapply(z$&quot;Exam 1&quot;, z$party, FUN = mean, simplify = TRUE)  ## simplify determines output type
-</code></pre>
+tapply(z$&#39;Exam 1&#39;, z$party, FUN = mean, simplify=TRUE)      ## simplify determines output type
 
-<pre><code>## Error: first argument must be a vector
+##     D      R 
+## 82.25  84.50 
 </code></pre>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-51" style="background:;">
+      <slide class="" id="slide-53" style="background:;">
   <hgroup>
     <h2>Commonly used built-in functions</h2>
   </hgroup>
@@ -1533,7 +1553,7 @@ mapply(mean,a,b,d)            ## What&#39;s happening here?
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-52" style="background:;">
+      <slide class="" id="slide-54" style="background:;">
   <hgroup>
     <h2>Commonly used built-in functions</h2>
   </hgroup>
@@ -1545,7 +1565,7 @@ mapply(mean,a,b,d)            ## What&#39;s happening here?
 <ul>
 <li>Like <code>apply()</code>, but used on <code>data.frames</code></li>
 <li><a href="http://www.jstatsoft.org/v40/i01/paper">Split, apply, combine</a> is an important concept in data analysis</li>
-<li>Package <a href="http://cran.r-project.org/web/packages/plyr/index.html"><code>plyr</code></a> is very popular and useful, but important to learn Base R first.</li>
+<li>Package <a href="http://cran.r-project.org/web/packages/plyr/index.html"><code>plyr</code></a> is very popular and useful, but important to learn Base R first</li>
 </ul>
 
 <pre><code class="r">aggregate(z[,c(2:3)], by=list(z$party), mean)          ## mean Exam score by party
@@ -1567,7 +1587,7 @@ split(z,f = z$gender)                       ## split a dataframe according to a 
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-53" style="background:;">
+      <slide class="" id="slide-55" style="background:;">
   <hgroup>
     <h2>Commonly used built-in functions</h2>
   </hgroup>
@@ -1583,17 +1603,22 @@ split(z,f = z$gender)                       ## split a dataframe according to a 
     <li>A is between 80 and 100</li></p>
 
 <p>b)
-<li>(i)   The function system.time() returns timings for R operations. Examine the help documentation for this function. </li>
-<li>(ii)  Compute the median standard deviation of every column of a 100 by 100 matrix. Initialize a 100 x 100 matrix using a Random Uniform Variable, between 20 and 50 in each cell. Compute the median standard deviation of each column using:</li>
-  <ol>(1) A for-loop</ol>
-  <ol>(2) An apply function</ol>
-<li>(iii) Which is the fastest?</li></p>
+  <br></p>
+
+<ol>The function `system.time()` returns timings for R operations. Examine the help documentation for this function.  </ol>
+
+<ol>Compute the median standard deviation of every column of a 100 by 100 matrix. Initialize a 100 x 100 matrix using a Random Uniform Variable, between 20 and 50 in each cell. Compute the median standard deviation of each column using:</ol>
+
+<p><br>A for-loop</br>
+  <br>An apply function</br>  </p>
+
+<ol>Which is the fastest? </ol>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-54" style="background:;">
+      <slide class="" id="slide-56" style="background:;">
   <hgroup>
     <h2>String Manipulation</h2>
   </hgroup>
@@ -1625,7 +1650,7 @@ for (i in files){
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-55" style="background:;">
+      <slide class="" id="slide-57" style="background:;">
   <hgroup>
     <h2>String Manipulation</h2>
   </hgroup>
@@ -1654,7 +1679,7 @@ paste(substr(example2, 19, 21), substr(example2, 22, 24), sep = &quot;&quot;)
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-56" style="background:;">
+      <slide class="" id="slide-58" style="background:;">
   <hgroup>
     <h2>String Manipulation</h2>
   </hgroup>
@@ -1683,7 +1708,7 @@ gregexpr(&quot;!&quot;,example2)    ## all occurrences of &quot;!&quot; in examp
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-57" style="background:;">
+      <slide class="" id="slide-59" style="background:;">
   <hgroup>
     <h2>String Manipulation</h2>
   </hgroup>
@@ -1715,7 +1740,7 @@ y &lt;- &quot;This is a sentence.&quot;
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-58" style="background:;">
+      <slide class="" id="slide-60" style="background:;">
   <hgroup>
     <h2>Miscellaneous Tips and tricks</h2>
   </hgroup>
@@ -1739,7 +1764,7 @@ cor(x,y)            ## [1] 0.02883522
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-59" style="background:;">
+      <slide class="" id="slide-61" style="background:;">
   <hgroup>
     <h2>Miscellaneous Tips and tricks</h2>
   </hgroup>
@@ -1767,7 +1792,7 @@ x ^ 2.5     ## not so nice
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-60" style="background:;">
+      <slide class="" id="slide-62" style="background:;">
   <hgroup>
     <h2>Miscellaneous Tips and tricks</h2>
   </hgroup>
@@ -1792,7 +1817,7 @@ x %in% c(4,6)       ## best
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-61" style="background:;">
+      <slide class="" id="slide-63" style="background:;">
   <hgroup>
     <h2>Miscellaneous Tips and tricks</h2>
   </hgroup>
@@ -1821,7 +1846,7 @@ as.data.frame()
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-62" style="background:;">
+      <slide class="" id="slide-64" style="background:;">
   <hgroup>
     <h2>Miscellaneous Tips and tricks</h2>
   </hgroup>
@@ -1853,7 +1878,7 @@ One plus one is 2
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-63" style="background:;">
+      <slide class="" id="slide-65" style="background:;">
   <hgroup>
     <h2>Miscellaneous Tips and tricks</h2>
   </hgroup>
@@ -1886,7 +1911,7 @@ cat(paste(mode(x), mode(y)))
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-64" style="background:;">
+      <slide class="" id="slide-66" style="background:;">
   <hgroup>
     <h2>Miscellaneous Tips and tricks</h2>
   </hgroup>
@@ -1918,7 +1943,7 @@ df
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-65" style="background:;">
+      <slide class="" id="slide-67" style="background:;">
   <hgroup>
     <h2>Miscellaneous Tips and tricks</h2>
   </hgroup>
@@ -1942,7 +1967,7 @@ z &lt;- c(&quot;f&quot;,&quot;g&quot;,&quot;e&quot;,&quot;i&quot;,&quot;l&quot;,
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-66" style="background:;">
+      <slide class="" id="slide-68" style="background:;">
   <hgroup>
     <h2>Not covered</h2>
   </hgroup>
@@ -1960,7 +1985,7 @@ z &lt;- c(&quot;f&quot;,&quot;g&quot;,&quot;e&quot;,&quot;i&quot;,&quot;l&quot;,
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-67" style="background:;">
+      <slide class="" id="slide-69" style="background:;">
   <hgroup>
     <h2>Resources</h2>
   </hgroup>
@@ -1971,15 +1996,21 @@ z &lt;- c(&quot;f&quot;,&quot;g&quot;,&quot;e&quot;,&quot;i&quot;,&quot;l&quot;,
 <li><a href="https://www.coursera.org/course/compdata">Computing for Data Analysis</a> (Coursera)</li>
 </ol>
 
-<hr>
-
-<h2>Questions?</h2>
-
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-68" style="background:;">
+      <slide class="" id="slide-70" style="background:;">
+  <hgroup>
+    <h2>Questions?</h2>
+  </hgroup>
+  <article>
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-71" style="background:;">
   <hgroup>
     
   </hgroup>
@@ -2003,6 +2034,20 @@ z &lt;- c(&quot;f&quot;,&quot;g&quot;,&quot;e&quot;,&quot;i&quot;,&quot;l&quot;,
 <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
 <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery-1.7.min.js"><\/script>')</script>
 <!-- Load Javascripts for Widgets -->
+<!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script> -->
+<script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
 <!-- LOAD HIGHLIGHTER JS FILES -->
 <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>

@@ -6,7 +6,7 @@ job         : Data Analytics at Squarespace
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
 hitheme     : tomorrow      # 
-widgets     : []            # {mathjax, quiz, bootstrap}
+widgets     : mathjax            # {mathjax, quiz, bootstrap}
 mode        : selfcontained # {standalone, draft}
 ---
 
@@ -18,6 +18,7 @@ mode        : selfcontained # {standalone, draft}
 4. Functions
 5. Commonly used built in functions
 6. String manipulation
+7. Miscellaneous Tips and tricks
 
 ----
 
@@ -195,7 +196,7 @@ ifelse(x < 5, x^2, 0) ## if (condition) { do something } else { do something els
 ----
 
 ## Data structures
-# Vectorized Operations continued
+# Vectorized Operations
 <space>
 - When coming from a different language, probably best NOT to translate code verbatim
 - Loops are your friend in C. In R, loops are like a freeloading friend - unrealiable at best.
@@ -219,7 +220,7 @@ logsum <- sum(log(x))       ## this calculation takes about 0.002 seconds. 98% f
 ----
 
 ## Data structures
-# Vectors
+# Vectorized Operations
 <space>
 - Be careful when thinking you are vectorizing
 - Many R functions take a function as an argument
@@ -294,7 +295,7 @@ x[c(FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE)]
 
 ## Data structures
 # Vector Filtering
-<space>
+<br>
 Common filtering functions include:
 ```r
 subset(x, x > 5)      ## [1]  6  7  8  9 10
@@ -314,6 +315,17 @@ which(x > 5)          ## [1]  6  7  8  9 10
 <ul>- `seq()`, `rep()`, `sample()`, `runif()`</ul>
 <ul>- `any()`, `all()`, `which()`, `subset()`</ul>
 - Recycling - useful but note that R will not give you an error message
+
+----
+
+## Data structures
+# Exercise!
+<br>
+Compute the following:
+
+a. $\large \sum_{n=1}^{500} \ln{(i^{2})} + \frac{2}{i}$
+
+b. $\large \sum_{i=1}^{10}\sum_{n=1}^{i} \frac{n}{i}$
 
 ----
 
@@ -440,7 +452,7 @@ print(x)
 ## [1] "R presentation"
 ## 
 ## $date
-## [1] "12 01 2013"
+## [1] "12 04 2013"
 ## 
 ## $num_attendees
 ## [1] 10
@@ -497,6 +509,7 @@ y <- list(title='2nd R presentation', date=pres_2, num_attendees=20)
 z <- list(x,y)       ## list of lists
 ## z[[1]][1] is equivalent to x
 ```
+
 ----
 
 ## Data structures
@@ -599,9 +612,9 @@ dim(z)
 head(z)           ## default to first 6 rows
 tail(z)           ## default to last 6 rows
 ``` 
-- While very useful, `data.frames` are more memory intensive than matrices
+- While very useful, `data.frames` are more memory intensive than `matrices`
 - When initializing, if possible, preallocate `data.frame`, i.e. set size of `data.frame` before using it
-- Whenever possible, use matrices
+- Whenever possible, use `matrices`
 
 ----
 
@@ -676,16 +689,15 @@ z$names2 <- NULL                            ## NULL removes the object from the 
 z$gender <- c("m","f","m","f","m","f")
 z$party <- c("D","D","R","R","D","D")
 ```
-
 ```r
-tbl <- table(z$gender, z$party)  ## contingency table. class 'table'
-addmargins(tbl)  ## marginal sums
-```
+tbl <- table(z$gender,z$party)              ## contingency table. class "table"
+addmargins(tbl)           ## marginal sums
 
+##      D R Sum
+##  f   2 1   3
+##  m   2 1   3
+# # Sum 4 2   6
 ```
-## Error: invalid 'times' argument
-```
-
 
 ----
 
@@ -748,6 +760,7 @@ for (i in c(1:length(x))){
 for (i in c(1:length(x))) x[i] <- x[i] * 2
 ```
 # `while()`
+<space>
 ```r
 i=1
 while (i <= 21) {
@@ -772,6 +785,7 @@ repeat {
 }
 ```
 # `try()`
+<space>
 
 ```r
 try("hello" + 1, silent = FALSE)
@@ -793,7 +807,7 @@ tryCatch("hello" + 1, error = function(e) print("don't be ridiculous"))
 if (a == b) {
   # do something
 } else {                  ## the else statement MUST be on the same line as the 
-  # do something else     ## closing bracket of the if
+  # do something else     ## closing bracket of the if()
 }
 
 if (a == b) {
@@ -817,7 +831,7 @@ ifelse (a == b, x, y)     ## use ifelse() on vectors
 (a) Write a loop to scan through an integer vector and return the index of the 
 largest value. The loop should terminate as soon as the index is found. Ignore ties.
 
-(b) Redo the above using built-in R functions such as rank(), sort() and order()
+(b) Redo the above using built-in R functions such as rank(), sort() and order().
 ```
 
 ----
@@ -873,11 +887,11 @@ exponentiate  # prints out the entire function - good if you forget what's in it
 ## function(x, y) {
 ##     return(x^y)
 ## }
-## <environment: 0x7f852e0d8db8>
+## <environment: 0x7f852f59c8d8>
 ```
 
 - Try it out on any built-in R function to see its innards
-- Note that it won't work on some functions that are written in C (e.g  sum, mean)
+- Note that it won't work on some functions that are written in C (e.g  `sum()`, `mean()`)
 
 ----
 
@@ -896,20 +910,8 @@ f <- function(x, ...) {
 ```
 - Anonymous functions. Single use. No name. No feelings exchanged.
 
-
 ```r
-sapply(x, function(x) x * 2)
-```
-
-```
-## Warning: * not meaningful for factors Warning: * not meaningful for
-## factors Warning: * not meaningful for factors Warning: * not meaningful
-## for factors Warning: * not meaningful for factors Warning: * not
-## meaningful for factors Warning: * not meaningful for factors
-```
-
-```
-## [1] NA NA NA NA NA NA NA
+sapply (x, function(x) x*2)
 ```
 
 ----
@@ -940,9 +942,8 @@ f(2)
 ## Functions
 # Exercise!
 <br>
-Write a function that finds the maximum value in corresponding indices for two vectors.
+Write a function that finds the maximum value in corresponding indices for two vectors. For example:
 ```r
-e.g. 
 x <- c(1,2,3,4)
 y <- c(0,3,5,4)
 ## output should be 
@@ -1003,11 +1004,11 @@ x
 # Generic functions
 <space>
 - R is a dialect of S3 (S4 is the latest)
-- S3 has generic functions, such as `print()`, `plot()`, `summary()`
+- S3 has generic functions, such as `print()`, `plot()`, `summary()`. Concept of OOP.
 
 ```r
 data(cars)              ## load built in dataset
-fit <- lm(dist~speed,data=cars)
+fit <- lm(dist ~ speed, data=cars)
 summary(fit)
 
 ## same function call, on a different object type
@@ -1026,9 +1027,11 @@ methods(summary)
 # Exercise!
 <space>
 
-<ol>a) Get the Adjusted R-squared from the regression of distance on speed in the cars dataset</ol>
-<ol>b) Get the t-value of the X variable (i.e. speed)</ol>
-<ol>c) Predict the braking distance if going 200 miles per hour</ol>
+a) Get the Adjusted R-squared from the regression of distance on speed in the cars dataset
+<br>
+b) Get the t-value of the X variable (i.e. speed)
+<br>
+c) Predict the braking distance if going 200 miles per hour
 
 ----
 
@@ -1070,16 +1073,13 @@ lapply(list(z$'Exam 1',z$'Exam 2'),mean)    ## mean of Exam scores; returns a li
 sapply(list(z$'Exam 1',z$'Exam 2'),mean)    ## mean of Exam scores; returns a vector
 sapply(list(z$'Exam 1',z$'Exam 2'), mean, simplify=FALSE)   ## same as lappy()
 ```
-
 ```r
 ## find mean exam 1 scores, split by party
-tapply(z$"Exam 1", z$party, FUN = mean, simplify = TRUE)  ## simplify determines output type
-```
+tapply(z$'Exam 1', z$party, FUN = mean, simplify=TRUE)      ## simplify determines output type
 
+##     D      R 
+## 82.25  84.50 
 ```
-## Error: first argument must be a vector
-```
-
 
 ----
 
@@ -1107,7 +1107,7 @@ mapply(mean,a,b,d)            ## What's happening here?
 <space>
 - Like `apply()`, but used on `data.frames`
 - [Split, apply, combine][1] is an important concept in data analysis
-- Package [`plyr`][2] is very popular and useful, but important to learn Base R first.
+- Package [`plyr`][2] is very popular and useful, but important to learn Base R first
 [1]: http://www.jstatsoft.org/v40/i01/paper
 [2]: http://cran.r-project.org/web/packages/plyr/index.html
 ```r
@@ -1139,11 +1139,12 @@ a)  Create a column for the average grade for each student. Label it.
     <li>A is between 80 and 100</li>
 
 b)
-<li>(i)   The function system.time() returns timings for R operations. Examine the help documentation for this function. </li>
-<li>(ii)  Compute the median standard deviation of every column of a 100 by 100 matrix. Initialize a 100 x 100 matrix using a Random Uniform Variable, between 20 and 50 in each cell. Compute the median standard deviation of each column using:</li>
-  <ol>(1) A for-loop</ol>
-  <ol>(2) An apply function</ol>
-<li>(iii) Which is the fastest?</li>
+  <br>
+<ol>The function `system.time()` returns timings for R operations. Examine the help documentation for this function.  </ol>
+<ol>Compute the median standard deviation of every column of a 100 by 100 matrix. Initialize a 100 x 100 matrix using a Random Uniform Variable, between 20 and 50 in each cell. Compute the median standard deviation of each column using:</ol>
+  <br>A for-loop</br>
+  <br>An apply function</br>  
+<ol>Which is the fastest? </ol>
 
 ----
 
@@ -1438,6 +1439,7 @@ z <- c("f","g","e","i","l","o","p","u")
 [1]: http://shop.oreilly.com/product/9780596809164.do
 [2]: http://nostarch.com/artofr.htm
 [3]: https://www.coursera.org/course/compdata
+
 ----
 
 ## Questions?
