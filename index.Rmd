@@ -2,7 +2,7 @@
 title       : R Intro Part IV
 subtitle    : Data structures and functions
 author      : Ilan Man
-job         : Data Analytics at Squarespace
+job         : Business Intelligence @ Squarespace
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
 hitheme     : tomorrow      # 
@@ -32,10 +32,14 @@ mode        : selfcontained # {standalone, draft}
 - Originally command line, but graphical interfaces (including RStudio and Rattle) becoming new norm
 - Very popular, especially among academics and statisticians
 - Intepreted language - easier to write code, but slower computations
-- Packages available to speed up R code - `xts`, `Rcpp`, `ff`, `snow`, `parallel`
+- Packages available to speed up R code - [`Rcpp`][2], [`ff`][3], [`snow`][4], [`parallel`][5]
 - R holds all data in RAM. Problematic for large data sets
 - R is excellent for prototyping
 - `?help` -> use this to get help. `?` is easily the most useful function in R.
+[2]: http://cran.r-project.org/web/packages/Rcpp/index.html
+[3]: http://cran.r-project.org/web/packages/ff/index.html
+[4]: http://cran.r-project.org/web/packages/snow/snow.pdf
+[5]: http://stat.ethz.ch/R-manual/R-devel/library/parallel/doc/parallel.pdf
 
 ----
 
@@ -179,7 +183,7 @@ ifelse(x < 5, x^2, 0) ## if (condition) { do something } else { do something els
 # Vectorized Operations
 <space>
 - When coming from a different language, probably best NOT to translate code verbatim
-- Loops are your friend in C. In R, loops are like a freeloading friend - unrealiable at best.
+- Loops are your friend in C. In R, loops are like a bad friend - timeconsuming at best.
 - Under the hood, a vectorized operation is running a loop - in C. Much faster than in R.
 - Vectorization also provides clarity (but don't get carried away one-lining everthing)
 
@@ -193,7 +197,7 @@ logsum
 [1] 1281524                 ## this calculation takes about 0.17 seconds
 
 # R translation
-logsum <- sum(log(x))       ## this calculation takes about 0.002 seconds. 98% faster.
+logsum <- sum(log(x))       ## this calculation takes about 0.002 seconds.
 [1] 1281524
 ```
 
@@ -217,7 +221,7 @@ max(1,3,2)
 [1] 3
 ```
 
-- Vectorization might not work when the current iteration depends on the previous
+- Vectorization might not work when the current iteration depends on the previous (think $ \sum \sum $)
 - Try to put code outside of loops when possible
 - Use built-in functions such as `rowSums(x)` instead of `apply(x,1,sum)`...more on this later!
 
@@ -232,7 +236,8 @@ max(1,3,2)
 
 ```r
 x <- c(5, 10, NA, 20, 25)
-mean(x)                 ## output is a numeric vector with NA as its value
+mean(x)                
+[1] NA
 
 is.na(x)                ## commonly used when cleaning data sets
 [1] FALSE FALSE  TRUE FALSE FALSE
@@ -283,12 +288,12 @@ which(x > 5)          ## [1]  6  7  8  9 10
 # Vectors: Summary
 <space>
 - Everything in R is a vector
-- All elements are of one type, atomic vectors.
+- All elements are of one type, `atomic`
 - Vectorize whenever possible
 - Filtering and indexing are important concepts
-<ul>- `seq()`, `rep()`, `sample()`, `runif()`</ul>
-<ul>- `any()`, `all()`, `which()`, `subset()`</ul>
 - Recycling - useful but note that R will not give you an error message
+- `seq()`, `rep()`, `sample()`, `runif()`
+- `any()`, `all()`, `which()`, `subset()`, `%in%`
 
 ----
 
@@ -297,9 +302,16 @@ which(x > 5)          ## [1]  6  7  8  9 10
 <br>
 Compute the following:
 
-a. $\large \sum_{n=1}^{500} \ln{(i^{2})} + \frac{2}{i}$
+a) $\large \sum_{i=1}^{500} \ln{(i^{2})} + \frac{2}{i}$
 
-b. $\large \sum_{i=1}^{10}\sum_{n=1}^{i} \frac{n}{i}$
+b) $\large \frac{1}{n}\sum_{i=1}^{n} (\bar{X} - X_{i})^{2}$, where X ~ Normal(5,100) and n = 1000
+<br><br>
+Hint:</br>
+```r
+?rnorm
+```
+
+c) $\large \frac{1}{n}\sum_{i=1}^{n} (\bar{X} - X_{i})(\bar{Y} - Y_{i})$, where X ~ Poisson with lambda of 2, Y ~ Exponential with a rate of 1, and n = 1000
 
 ----
 
@@ -392,7 +404,8 @@ x <- matrix(rep(c(1,3,-1,2),5),ncol=4)
 b) 
 y <- matrix(c(c(1,2,4,8),c(2,3,-1,-7),c(0,5,12,-4),c(3,4,5,0)),ncol=4)
 (i)  Calculate the trace of y.
-(ii) Replace each element of the 3rd column with the median of the elements of the first, second and fourth columns for the same row. 
+(ii) Replace each element of the 3rd column with the median of the elements of the first, second and 
+fourth columns for the same row. 
 ```
 
 ----
@@ -498,7 +511,7 @@ print(y)
 ----
 
 ## Data structures
-# Data.frames
+# Data Frames
 <space>
 ```r
 x <- data.frame(matrix( sample(c(50:100), size=12, replace=TRUE), nrow=6, ncol=2))
@@ -513,7 +526,7 @@ x['X1']               ## type data.frame
 ----
 
 ## Data structures
-# Data.frames
+# Data Frames
 <space>
 - Helpful `data.frame` functions
 
@@ -535,7 +548,7 @@ z <- rbind(z, w)               ## row bind
 ----
 
 ## Data structures
-# Data.frames
+# Data Frames
 <space>
 ```r
 ## explicitly set columns names for z. Use rownames() for row names. Shocker.
@@ -905,10 +918,12 @@ methods(summary)
 ## Functions
 # Exercise!
 <space>
-
+<br>
 a) Get the Adjusted R-squared from the regression of distance on speed in the cars dataset
 <br>
+<br>
 b) Get the t-value of the X variable (i.e. speed)
+<br>
 <br>
 c) Predict the braking distance if going 200 miles per hour
 
@@ -1018,12 +1033,11 @@ a)  Create a column for the average grade for each student. Label it.
     <li>A is between 80 and 100</li>
 
 b)
-  <br>
-<ol>The function `system.time()` returns timings for R operations. Examine the help documentation for this function.  </ol>
-<ol>Compute the median standard deviation of every column of a 100 by 100 matrix. Initialize a 100 x 100 matrix using a Random Uniform Variable, between 20 and 50 in each cell. Compute the median standard deviation of each column using:</ol>
-  <br>A for-loop</br>
-  <br>An apply function</br>  
-<ol>Which is the fastest? </ol>
+- The function `system.time()` returns timings for R operations. Examine the help documentation for this function.
+- Compute the median standard deviation of every column of a 100 by 100 matrix. Initialize a 100 x 100 matrix using a Random Uniform Variable, between 20 and 50 in each cell. Compute the median standard deviation of each column using:
+   - A `for()` loop
+   - An `apply()` function  
+- Which is the fastest?
 
 ----
 
@@ -1130,7 +1144,6 @@ mean(x)             ## [1] 85.22434
 median(x)           ## [1] 85.24506
 sd(x)               ## [1] 4.869123
 var(x)              ## [1] 23.70836
-sd(y)               ## [1] 5.736198
 cov(x,y)            ## [1] 0.8053751
 cor(x,y)            ## [1] 0.02883522
 ``` 
@@ -1284,15 +1297,25 @@ z <- c("f","g","e","i","l","o","p","u")
 
 ## Resources
 
-1. [The Art of R Programming][1]
-2. [R cookbook][2]
-3. [Computing for Data Analysis][3] (Coursera)
+1. [The Art of R Programming][1] - *programming in R*
+2. [R cookbook][2] - *recipes and tips*
+3. [Computing for Data Analysis][3] (Coursera) - *fundamentals*
+4. [Slidify][4] - *slides*
+5. [knitR][5] - *reports and presentations*
 [1]: http://shop.oreilly.com/product/9780596809164.do
 [2]: http://nostarch.com/artofr.htm
 [3]: https://www.coursera.org/course/compdata
+[4]: http://slidify.org
+[5]: http://yihui.name/knitr/
+
+----
+
+## PRACTICE, PRACTICE, PRACTICE
 
 ----
 
 ## Questions?
 
 ----
+
+## Thank you!

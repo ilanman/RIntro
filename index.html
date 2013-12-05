@@ -34,7 +34,7 @@
       <hgroup class="auto-fadein">
         <h1>R Intro Part IV</h1>
         <h2>Data structures and functions</h2>
-        <p>Ilan Man<br/>Data Analytics at Squarespace</p>
+        <p>Ilan Man<br/>Business Intelligence @ Squarespace</p>
       </hgroup>
           </slide>
 
@@ -75,7 +75,7 @@
 <li>Originally command line, but graphical interfaces (including RStudio and Rattle) becoming new norm</li>
 <li>Very popular, especially among academics and statisticians</li>
 <li>Intepreted language - easier to write code, but slower computations</li>
-<li>Packages available to speed up R code - <code>xts</code>, <code>Rcpp</code>, <code>ff</code>, <code>snow</code>, <code>parallel</code></li>
+<li>Packages available to speed up R code - <a href="http://cran.r-project.org/web/packages/Rcpp/index.html"><code>Rcpp</code></a>, <a href="http://cran.r-project.org/web/packages/ff/index.html"><code>ff</code></a>, <a href="http://cran.r-project.org/web/packages/snow/snow.pdf"><code>snow</code></a>, <a href="http://stat.ethz.ch/R-manual/R-devel/library/parallel/doc/parallel.pdf"><code>parallel</code></a></li>
 <li>R holds all data in RAM. Problematic for large data sets</li>
 <li>R is excellent for prototyping</li>
 <li><code>?help</code> -&gt; use this to get help. <code>?</code> is easily the most useful function in R.</li>
@@ -304,7 +304,7 @@ ifelse(x &lt; 5, x^2, 0) ## if (condition) { do something } else { do something 
 
 <ul>
 <li>When coming from a different language, probably best NOT to translate code verbatim</li>
-<li>Loops are your friend in C. In R, loops are like a freeloading friend - unrealiable at best.</li>
+<li>Loops are your friend in C. In R, loops are like a bad friend - timeconsuming at best.</li>
 <li>Under the hood, a vectorized operation is running a loop - in C. Much faster than in R.</li>
 <li>Vectorization also provides clarity (but don&#39;t get carried away one-lining everthing)</li>
 </ul>
@@ -318,7 +318,7 @@ logsum
 [1] 1281524                 ## this calculation takes about 0.17 seconds
 
 # R translation
-logsum &lt;- sum(log(x))       ## this calculation takes about 0.002 seconds. 98% faster.
+logsum &lt;- sum(log(x))       ## this calculation takes about 0.002 seconds.
 [1] 1281524
 </code></pre>
 
@@ -352,7 +352,7 @@ max(1,3,2)
 </code></pre>
 
 <ul>
-<li>Vectorization might not work when the current iteration depends on the previous</li>
+<li>Vectorization might not work when the current iteration depends on the previous (think $ \sum \sum $)</li>
 <li>Try to put code outside of loops when possible</li>
 <li>Use built-in functions such as <code>rowSums(x)</code> instead of <code>apply(x,1,sum)</code>...more on this later!</li>
 </ul>
@@ -377,7 +377,8 @@ max(1,3,2)
 </ul>
 
 <pre><code class="r">x &lt;- c(5, 10, NA, 20, 25)
-mean(x)                 ## output is a numeric vector with NA as its value
+mean(x)                
+[1] NA
 
 is.na(x)                ## commonly used when cleaning data sets
 [1] FALSE FALSE  TRUE FALSE FALSE
@@ -460,12 +461,12 @@ which(x &gt; 5)          ## [1]  6  7  8  9 10
 
 <ul>
 <li>Everything in R is a vector</li>
-<li>All elements are of one type, atomic vectors.</li>
+<li>All elements are of one type, <code>atomic</code></li>
 <li>Vectorize whenever possible</li>
-<li>Filtering and indexing are important concepts
-<ul>- <code>seq()</code>, <code>rep()</code>, <code>sample()</code>, <code>runif()</code></ul>
-<ul>- <code>any()</code>, <code>all()</code>, <code>which()</code>, <code>subset()</code></ul></li>
+<li>Filtering and indexing are important concepts</li>
 <li>Recycling - useful but note that R will not give you an error message</li>
+<li><code>seq()</code>, <code>rep()</code>, <code>sample()</code>, <code>runif()</code></li>
+<li><code>any()</code>, <code>all()</code>, <code>which()</code>, <code>subset()</code>, <code>%in%</code></li>
 </ul>
 
   </article>
@@ -482,9 +483,16 @@ which(x &gt; 5)          ## [1]  6  7  8  9 10
 <p><br>
 Compute the following:</p>
 
-<p>a. \(\large \sum_{n=1}^{500} \ln{(i^{2})} + \frac{2}{i}\)</p>
+<p>a) \(\large \sum_{i=1}^{500} \ln{(i^{2})} + \frac{2}{i}\)</p>
 
-<p>b. \(\large \sum_{i=1}^{10}\sum_{n=1}^{i} \frac{n}{i}\)</p>
+<p>b) \(\large \frac{1}{n}\sum_{i=1}^{n} (\bar{X} - X_{i})^{2}\), where X ~ Normal(5,100) and n = 1000
+<br><br>
+Hint:</br></p>
+
+<pre><code class="r">?rnorm
+</code></pre>
+
+<p>c) \(\large \frac{1}{n}\sum_{i=1}^{n} (\bar{X} - X_{i})(\bar{Y} - Y_{i})\), where X ~ Poisson with lambda of 2, Y ~ Exponential with a rate of 1, and n = 1000</p>
 
   </article>
   <!-- Presenter Notes -->
@@ -625,7 +633,8 @@ x &lt;- matrix(rep(c(1,3,-1,2),5),ncol=4)
 b) 
 y &lt;- matrix(c(c(1,2,4,8),c(2,3,-1,-7),c(0,5,12,-4),c(3,4,5,0)),ncol=4)
 (i)  Calculate the trace of y.
-(ii) Replace each element of the 3rd column with the median of the elements of the first, second and fourth columns for the same row. 
+(ii) Replace each element of the 3rd column with the median of the elements of the first, second and 
+fourth columns for the same row. 
 </code></pre>
 
   </article>
@@ -657,7 +666,7 @@ print(x)
 ## [1] &quot;R presentation&quot;
 ## 
 ## $date
-## [1] &quot;12 04 2013&quot;
+## [1] &quot;12 05 2013&quot;
 ## 
 ## $num_attendees
 ## [1] 10
@@ -800,7 +809,7 @@ print(y)
     <h2>Data structures</h2>
   </hgroup>
   <article>
-    <h1>Data.frames</h1>
+    <h1>Data Frames</h1>
 
 <p><space></p>
 
@@ -822,7 +831,7 @@ x[&#39;X1&#39;]               ## type data.frame
     <h2>Data structures</h2>
   </hgroup>
   <article>
-    <h1>Data.frames</h1>
+    <h1>Data Frames</h1>
 
 <p><space></p>
 
@@ -853,7 +862,7 @@ z &lt;- rbind(z, w)               ## row bind
     <h2>Data structures</h2>
   </hgroup>
   <article>
-    <h1>Data.frames</h1>
+    <h1>Data Frames</h1>
 
 <p><space></p>
 
@@ -1237,7 +1246,7 @@ body(exponentiate)           # { return (x^y) }
 <pre><code>## function(x, y) {
 ##     return(x^y)
 ## }
-## &lt;environment: 0x7f852f59c8d8&gt;
+## &lt;environment: 0x7f852e083e38&gt;
 </code></pre>
 
 <ul>
@@ -1438,11 +1447,13 @@ methods(summary)
   <article>
     <h1>Exercise!</h1>
 
-<p><space></p>
-
-<p>a) Get the Adjusted R-squared from the regression of distance on speed in the cars dataset
+<p><space>
+<br>
+a) Get the Adjusted R-squared from the regression of distance on speed in the cars dataset
+<br>
 <br>
 b) Get the t-value of the X variable (i.e. speed)
+<br>
 <br>
 c) Predict the braking distance if going 200 miles per hour</p>
 
@@ -1602,17 +1613,18 @@ split(z,f = z$gender)                       ## split a dataframe according to a 
     <li>B is between 70 and 79</li> 
     <li>A is between 80 and 100</li></p>
 
-<p>b)
-  <br></p>
+<p>b)</p>
 
-<ol>The function `system.time()` returns timings for R operations. Examine the help documentation for this function.  </ol>
+<ul>
+<li>The function <code>system.time()</code> returns timings for R operations. Examine the help documentation for this function.</li>
+<li>Compute the median standard deviation of every column of a 100 by 100 matrix. Initialize a 100 x 100 matrix using a Random Uniform Variable, between 20 and 50 in each cell. Compute the median standard deviation of each column using:
 
-<ol>Compute the median standard deviation of every column of a 100 by 100 matrix. Initialize a 100 x 100 matrix using a Random Uniform Variable, between 20 and 50 in each cell. Compute the median standard deviation of each column using:</ol>
-
-<p><br>A for-loop</br>
-  <br>An apply function</br>  </p>
-
-<ol>Which is the fastest? </ol>
+<ul>
+<li>A <code>for()</code> loop</li>
+<li>An <code>apply()</code> function<br></li>
+</ul></li>
+<li>Which is the fastest?</li>
+</ul>
 
   </article>
   <!-- Presenter Notes -->
@@ -1755,7 +1767,6 @@ mean(x)             ## [1] 85.22434
 median(x)           ## [1] 85.24506
 sd(x)               ## [1] 4.869123
 var(x)              ## [1] 23.70836
-sd(y)               ## [1] 5.736198
 cov(x,y)            ## [1] 0.8053751
 cor(x,y)            ## [1] 0.02883522
 </code></pre>
@@ -1991,9 +2002,11 @@ z &lt;- c(&quot;f&quot;,&quot;g&quot;,&quot;e&quot;,&quot;i&quot;,&quot;l&quot;,
   </hgroup>
   <article>
     <ol>
-<li><a href="http://shop.oreilly.com/product/9780596809164.do">The Art of R Programming</a></li>
-<li><a href="http://nostarch.com/artofr.htm">R cookbook</a></li>
-<li><a href="https://www.coursera.org/course/compdata">Computing for Data Analysis</a> (Coursera)</li>
+<li><a href="http://shop.oreilly.com/product/9780596809164.do">The Art of R Programming</a> - <em>programming in R</em></li>
+<li><a href="http://nostarch.com/artofr.htm">R cookbook</a> - <em>recipes and tips</em></li>
+<li><a href="https://www.coursera.org/course/compdata">Computing for Data Analysis</a> (Coursera) - <em>fundamentals</em></li>
+<li><a href="http://slidify.org">Slidify</a> - <em>slides</em></li>
+<li><a href="http://yihui.name/knitr/">knitR</a> - <em>reports and presentations</em></li>
 </ol>
 
   </article>
@@ -2002,7 +2015,7 @@ z &lt;- c(&quot;f&quot;,&quot;g&quot;,&quot;e&quot;,&quot;i&quot;,&quot;l&quot;,
 
       <slide class="" id="slide-70" style="background:;">
   <hgroup>
-    <h2>Questions?</h2>
+    <h2>PRACTICE, PRACTICE, PRACTICE</h2>
   </hgroup>
   <article>
     
@@ -2012,7 +2025,17 @@ z &lt;- c(&quot;f&quot;,&quot;g&quot;,&quot;e&quot;,&quot;i&quot;,&quot;l&quot;,
 
       <slide class="" id="slide-71" style="background:;">
   <hgroup>
+    <h2>Questions?</h2>
+  </hgroup>
+  <article>
     
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-72" style="background:;">
+  <hgroup>
+    <h2>Thank you!</h2>
   </hgroup>
   <article>
     
