@@ -900,7 +900,7 @@ exponentiate  # prints out the entire function - good if you forget what's in it
 ## function(x, y) {
 ##     return(x^y)
 ## }
-## <environment: 0x7f852e083e38>
+## <environment: 0x7f852e7b74e0>
 ```
 
 - Try it out on any built-in R function to see its innards
