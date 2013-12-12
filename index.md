@@ -1,12 +1,12 @@
 ---
-title       : R Intro Part IV
+title       : R Intro Part
 subtitle    : Data structures and functions
 author      : Ilan Man
 job         : Business Intelligence @ Squarespace
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
 hitheme     : tomorrow      # 
-widgets     : mathjax            # {mathjax, quiz, bootstrap}
+widgets     : mathjax       # {mathjax, quiz, bootstrap}
 mode        : selfcontained # {standalone, draft}
 ---
 
@@ -465,7 +465,7 @@ print(x)
 ## [1] "R presentation"
 ## 
 ## $date
-## [1] "12 05 2013"
+## [1] "12 06 2013"
 ## 
 ## $num_attendees
 ## [1] 10
@@ -900,7 +900,6 @@ exponentiate  # prints out the entire function - good if you forget what's in it
 ## function(x, y) {
 ##     return(x^y)
 ## }
-## <environment: 0x7f852ecc8270>
 ```
 
 - Try it out on any built-in R function to see its innards
