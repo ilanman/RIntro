@@ -2,7 +2,7 @@
 title       : R Intro Part IV
 subtitle    : Data structures and functions
 author      : Ilan Man
-job         : Strategy Operation @ Squarespace
+job         : Strategy Operations @ Squarespace
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
 hitheme     : tomorrow      # 
