@@ -2,7 +2,7 @@
 title       : R Intro Part IV
 subtitle    : Data structures and functions
 author      : Ilan Man
-job         : Business Intelligence @ Squarespace
+job         : Strategy Operations @ Squarespace
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
 hitheme     : tomorrow      # 
@@ -457,6 +457,13 @@ fourth columns for the same row.
 ```r
 x <- list(title = "R presentation", date = format(as.POSIXlt(Sys.time(), "EDT"), 
     "%m %d %Y"), num_attendees = 10)
+```
+
+```
+## Warning: unknown timezone 'EDT'
+```
+
+```r
 print(x)
 ```
 
@@ -465,7 +472,7 @@ print(x)
 ## [1] "R presentation"
 ## 
 ## $date
-## [1] "12 05 2013"
+## [1] "07 09 2014"
 ## 
 ## $num_attendees
 ## [1] 10
@@ -900,7 +907,7 @@ exponentiate  # prints out the entire function - good if you forget what's in it
 ## function(x, y) {
 ##     return(x^y)
 ## }
-## <environment: 0x7f852ecc8270>
+## <environment: 0x0000000009369090>
 ```
 
 - Try it out on any built-in R function to see its innards

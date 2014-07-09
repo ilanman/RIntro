@@ -34,7 +34,7 @@
       <hgroup class="auto-fadein">
         <h1>R Intro Part IV</h1>
         <h2>Data structures and functions</h2>
-        <p>Ilan Man<br/>Business Intelligence @ Squarespace</p>
+        <p>Ilan Man<br/>Strategy Operations @ Squarespace</p>
       </hgroup>
           </slide>
 
@@ -659,14 +659,19 @@ fourth columns for the same row.
 
 <pre><code class="r">x &lt;- list(title = &quot;R presentation&quot;, date = format(as.POSIXlt(Sys.time(), &quot;EDT&quot;), 
     &quot;%m %d %Y&quot;), num_attendees = 10)
-print(x)
+</code></pre>
+
+<pre><code>## Warning: unknown timezone &#39;EDT&#39;
+</code></pre>
+
+<pre><code class="r">print(x)
 </code></pre>
 
 <pre><code>## $title
 ## [1] &quot;R presentation&quot;
 ## 
 ## $date
-## [1] &quot;12 05 2013&quot;
+## [1] &quot;07 09 2014&quot;
 ## 
 ## $num_attendees
 ## [1] 10
@@ -1246,7 +1251,7 @@ body(exponentiate)           # { return (x^y) }
 <pre><code>## function(x, y) {
 ##     return(x^y)
 ## }
-## &lt;environment: 0x7f852ecc8270&gt;
+## &lt;environment: 0x0000000009369090&gt;
 </code></pre>
 
 <ul>
