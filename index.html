@@ -208,7 +208,7 @@ for (i in c(1:length(x))) y[i] &lt;- x[i] * 5
 print(y)
 </code></pre>
 
-<pre><code>##  [1]  5 10 15 20 25 30 35 40 45 50
+<pre><code> [1]  5 10 15 20 25 30 35 40 45 50
 </code></pre>
 
 <pre><code class="r">## alternatively....
@@ -216,7 +216,7 @@ y &lt;- x * 5
 print(y)
 </code></pre>
 
-<pre><code>##  [1]  5 10 15 20 25 30 35 40 45 50
+<pre><code> [1]  5 10 15 20 25 30 35 40 45 50
 </code></pre>
 
   </article>
@@ -275,7 +275,7 @@ all(x &lt; 8)
 f(x, 2)
 </code></pre>
 
-<pre><code>##  [1]   1   4   9  16  25  36  49  64  81 100
+<pre><code> [1]   1   4   9  16  25  36  49  64  81 100
 </code></pre>
 
 <ul>
@@ -422,7 +422,7 @@ x[ x &gt; 5 ]          ## What&#39;s happening here?
 <pre><code class="r">x[c(FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE)]
 </code></pre>
 
-<pre><code>## [1]  6  7  8  9 10
+<pre><code>[1]  6  7  8  9 10
 </code></pre>
 
 <p>...returns elements of <code>x</code> that are <code>TRUE</code></p>
@@ -516,10 +516,10 @@ Hint:</br></p>
 print(x)
 </code></pre>
 
-<pre><code>##      [,1] [,2]
-## [1,]    1    4
-## [2,]    2    5
-## [3,]    3    6
+<pre><code>     [,1] [,2]
+[1,]    1    4
+[2,]    2    5
+[3,]    3    6
 </code></pre>
 
 <pre><code class="r">x &lt;- matrix( seq(1,6,by=1), nrow=3)                ## same as above
@@ -661,20 +661,20 @@ fourth columns for the same row.
     &quot;%m %d %Y&quot;), num_attendees = 10)
 </code></pre>
 
-<pre><code>## Warning: unknown timezone &#39;EDT&#39;
+<pre><code>Warning: unknown timezone &#39;EDT&#39;
 </code></pre>
 
 <pre><code class="r">print(x)
 </code></pre>
 
-<pre><code>## $title
-## [1] &quot;R presentation&quot;
-## 
-## $date
-## [1] &quot;07 09 2014&quot;
-## 
-## $num_attendees
-## [1] 10
+<pre><code>$title
+[1] &quot;R presentation&quot;
+
+$date
+[1] &quot;07 09 2014&quot;
+
+$num_attendees
+[1] 10
 </code></pre>
 
   </article>
@@ -698,8 +698,8 @@ fourth columns for the same row.
 x[1]
 </code></pre>
 
-<pre><code>## $title
-## [1] &quot;R presentation&quot;
+<pre><code>$title
+[1] &quot;R presentation&quot;
 </code></pre>
 
 <pre><code class="r">## two brackets  -  [[  -  returns the actual element, in this case a character
@@ -800,9 +800,9 @@ y &lt;- data.frame(col1 = c(1, 2), col2 = c(&quot;a&quot;, &quot;b&quot;), row.n
 print(y)
 </code></pre>
 
-<pre><code>##      col1 col2
-## row1    1    a
-## row2    2    b
+<pre><code>     col1 col2
+row1    1    a
+row2    2    b
 </code></pre>
 
   </article>
@@ -911,16 +911,16 @@ tail(z)           ## default to last 6 rows
 print(x)
 </code></pre>
 
-<pre><code>## [1] finance tech    tech    auto    finance energy  tech   
-## Levels: auto energy finance tech
+<pre><code>[1] finance tech    tech    auto    finance energy  tech   
+Levels: auto energy finance tech
 </code></pre>
 
 <pre><code class="r">y &lt;- factor(x, levels = c(levels(x), &quot;tv&quot;))  ## include new level, even though no tv data exists
 print(y)
 </code></pre>
 
-<pre><code>## [1] finance tech    tech    auto    finance energy  tech   
-## Levels: auto energy finance tech tv
+<pre><code>[1] finance tech    tech    auto    finance energy  tech   
+Levels: auto energy finance tech tv
 </code></pre>
 
   </article>
@@ -1251,7 +1251,7 @@ body(exponentiate)           # { return (x^y) }
 <pre><code>## function(x, y) {
 ##     return(x^y)
 ## }
-## &lt;environment: 0x0000000009369090&gt;
+## &lt;environment: 0x0000000009b68db0&gt;
 </code></pre>
 
 <ul>

@@ -129,7 +129,7 @@ print(y)
 ```
 
 ```
-##  [1]  5 10 15 20 25 30 35 40 45 50
+ [1]  5 10 15 20 25 30 35 40 45 50
 ```
 
 ```r
@@ -139,7 +139,7 @@ print(y)
 ```
 
 ```
-##  [1]  5 10 15 20 25 30 35 40 45 50
+ [1]  5 10 15 20 25 30 35 40 45 50
 ```
 
 
@@ -183,7 +183,7 @@ f(x, 2)
 ```
 
 ```
-##  [1]   1   4   9  16  25  36  49  64  81 100
+ [1]   1   4   9  16  25  36  49  64  81 100
 ```
 
 
@@ -291,7 +291,7 @@ x[c(FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE)]
 ```
 
 ```
-## [1]  6  7  8  9 10
+[1]  6  7  8  9 10
 ```
 
 ...returns elements of `x` that are `TRUE`
@@ -354,10 +354,10 @@ print(x)
 ```
 
 ```
-##      [,1] [,2]
-## [1,]    1    4
-## [2,]    2    5
-## [3,]    3    6
+     [,1] [,2]
+[1,]    1    4
+[2,]    2    5
+[3,]    3    6
 ```
 
 ```r
@@ -460,7 +460,7 @@ x <- list(title = "R presentation", date = format(as.POSIXlt(Sys.time(), "EDT"),
 ```
 
 ```
-## Warning: unknown timezone 'EDT'
+Warning: unknown timezone 'EDT'
 ```
 
 ```r
@@ -468,14 +468,14 @@ print(x)
 ```
 
 ```
-## $title
-## [1] "R presentation"
-## 
-## $date
-## [1] "07 09 2014"
-## 
-## $num_attendees
-## [1] 10
+$title
+[1] "R presentation"
+
+$date
+[1] "07 09 2014"
+
+$num_attendees
+[1] 10
 ```
 
 
@@ -493,8 +493,8 @@ x[1]
 ```
 
 ```
-## $title
-## [1] "R presentation"
+$title
+[1] "R presentation"
 ```
 
 
@@ -573,9 +573,9 @@ print(y)
 ```
 
 ```
-##      col1 col2
-## row1    1    a
-## row2    2    b
+     col1 col2
+row1    1    a
+row2    2    b
 ```
 
 
@@ -652,8 +652,8 @@ print(x)
 ```
 
 ```
-## [1] finance tech    tech    auto    finance energy  tech   
-## Levels: auto energy finance tech
+[1] finance tech    tech    auto    finance energy  tech   
+Levels: auto energy finance tech
 ```
 
 ```r
@@ -662,8 +662,8 @@ print(y)
 ```
 
 ```
-## [1] finance tech    tech    auto    finance energy  tech   
-## Levels: auto energy finance tech tv
+[1] finance tech    tech    auto    finance energy  tech   
+Levels: auto energy finance tech tv
 ```
 
 
@@ -907,7 +907,7 @@ exponentiate  # prints out the entire function - good if you forget what's in it
 ## function(x, y) {
 ##     return(x^y)
 ## }
-## <environment: 0x0000000009369090>
+## <environment: 0x0000000009b68db0>
 ```
 
 - Try it out on any built-in R function to see its innards

@@ -120,7 +120,7 @@ for (i in 1:n) x <- c(x,i)  ## preferred vs. above
 <space>
 - Vectors obviate need for loops (most of the time!)
 
-```{r,eval=TRUE,echo=TRUE,message=FALSE}
+```{r,eval=TRUE,echo=TRUE,message=FALSE,comment=""}
 x <- seq( from=1 , to=10 , by=1 ); y <- 0;
 for (i in c(1:length(x) ) )  y[i] <- x[i] * 5
 print(y)
@@ -162,7 +162,7 @@ all(x < 8)
 <space>
 - Easiest way to acheive speed in R - apply a function to a vector
 
-```{r}
+```{r,comment=""}
 f <- function (a,b) return(a ^ b)
 f(x , 2)          
 ```
@@ -265,7 +265,7 @@ x[ x > 5 ]          ## What's happening here?
 ```
 - `x > 5` is a function call to `">"(a,b)` which returns `TRUE` or `FALSE` on every element of vector `x`. 
 - Output of `x > 5` is `logical` vector. And when used as an index on `x`...
-```{r}
+```{r,comment=""}
 x[ c(FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE) ] 
 ```
 ...returns elements of `x` that are `TRUE`
@@ -321,7 +321,7 @@ c) $\large \frac{1}{n}\sum_{i=1}^{n} (\bar{X} - X_{i})(\bar{Y} - Y_{i})$, where 
 - Like vectors with two additional attributes: rows and columns
 - Column-major order: insert values in first column, going down, then continuing to second column, going down, as so on
 
-```{r echo = TRUE, error=FALSE}
+```{r echo = TRUE, error=FALSE,comment=""}
 x <- matrix( seq(1,6,by=1), nrow=3, ncol=2)        ## 3 by 2 matrix
 print(x)
 ```
@@ -418,7 +418,7 @@ fourth columns for the same row.
 - Vectors, matrices cannot be broken down into smaller components, hence atomic.
 - Lists can be broken down - known as recursive vectors.
 
-```{r,echo=TRUE}
+```{r,echo=TRUE,comment=""}
 x <- list(title='R presentation', date=format(as.POSIXlt(Sys.time(),"EDT"),"%m %d %Y"), num_attendees=10)
 print(x)
 ```
@@ -430,7 +430,7 @@ print(x)
 <space>
 - Accessing `list` components
 
-```{r}
+```{r,comment=""}
 ## one bracket  -  [  -  returns a list type
 x[1]
 ```
@@ -502,7 +502,7 @@ r$residuals
 
 - Creating Data Frames
 
-```{r,message=TRUE,eval=TRUE}
+```{r,message=TRUE,eval=TRUE,comment=""}
 z <- data.frame()       ## data frame with 0 columns and 0 rows
 y <- data.frame(col1=c(1,2),col2=c("a","b"),row.names=c("row1","row2"))
 print(y)
@@ -574,7 +574,7 @@ tail(z)           ## default to last 6 rows
 - Can be thought of as a `vector` with additional information - categories, or `levels`
 - Used to split up data sets; commonly seen as columns of `data.frame`s
 
-```{r}
+```{r,comment=""}
 x <- factor(c("finance", "tech","tech","auto","finance","energy","tech"))
 print(x)
 y <- factor(x, levels = c(levels(x),"tv") )   ## include new level, even though no tv data exists
