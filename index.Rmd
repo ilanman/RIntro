@@ -1,5 +1,5 @@
 ---
-title       : R Intro Part IV
+title       : R Intro Part 4
 subtitle    : Data structures and functions
 author      : Ilan Man
 job         : Strategy Operations @ Squarespace
